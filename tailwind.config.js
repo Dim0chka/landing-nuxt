@@ -32,7 +32,7 @@ module.exports = {
       current: 'currentColor',
       'brand-color': '#66FCF1',
       'white': '#ffffff',
-      'total-black': '#000000'
+      'total-black': '#000000',
     },
     fontSize: {
       sm: '0.8rem',

@@ -77,24 +77,7 @@
                 </div>
                 <div class="grid grid-cols-1 gap-y-4 w-full">
                     <h1 class="text-left text-white text-base">я хочу обратиться по такому вопросу</h1>
-                    <form action="" class="grid gap-6 md:grid-cols-2">
-                        <div>
-                            <select id="countries" class="bg-white border-2 border-brand-color text-total-black text-sm rounded-lg focus:ring-brand-color focus:border-brand-color placeholder-total-black block w-full p-2.5 ">
-                                    <option selected>Внесение изменений в ПЗЗ г.Москвы</option>
-                                    <option value="US">United States</option>
-                                    <option value="CA">Canada</option>
-                                    <option value="FR">France</option>
-                                    <option value="DE">Germany</option>
-                            </select>
-                        </div>
-                        <div>
-                            <input type="text" id="last_name" class="bg-white border-2 border-brand-color text-total-black text-sm rounded-lg focus:ring-brand-color focus:border-brand-color placeholder-total-black block w-full p-2.5 " placeholder="Как вас зовут?" required>
-                        </div>
-                        <div>
-                            <input type="text" id="company" class="bg-white border-2 border-brand-color text-total-black text-sm rounded-lg focus:ring-brand-color focus:border-brand-color placeholder-total-black block w-full p-2.5 " placeholder="Flowbite" required>
-                        </div>  
-                        <button type="submit" class="rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Связаться с руководителем</button>
-                    </form>
+                    <TheForm/>
                 </div>
             </div>
         </div>
@@ -121,8 +104,6 @@ const carusel = [
 ]
 
 const {showButton, scrollToTop} = useScroll()
-console.log(showButton.value)
-console.log(scrollToTop)
 
 </script>
 

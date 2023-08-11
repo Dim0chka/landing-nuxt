@@ -3,5 +3,5 @@
         <TheHeader/>
         <slot />
         <TheFooter />
-      </div>
+    </div>
 </template>
