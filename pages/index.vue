@@ -1,9 +1,16 @@
 <template>
-    <div class="isolate px-6 pt-14 lg:px-8">
+  <button
+      class="fixed bottom-4 right-4 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-full"
+      @click="scrollToTop"
+      v-show="showButton"
+    >
+      Наверх
+    </button>
+    <div  class="isolate px-6 pt-14 lg:px-8">
         <div class="mx-auto max-w-7xl py-32 sm:py-48 lg:py-56">
           <div class="text-center">
-            <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">DEVELOPMENT ARCHITECTURE</h1>
-            <p class="mt-6 text-lg leading-8 text-white">Скажи <span class="text-brand-color">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-brand-color">сложные вопросы</span> в сфере <span class="text-brand-color">градостроительства</span> и земельных правоотношений.</p>
+            <h1 class=" font-bold tracking-tight text-white sm:text-title">DEVELOPMENT ARCHITECTURE</h1>
+            <p class="mt-6 text-base-text text-white">Скажи <span class="text-brand-color">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-brand-color">сложные вопросы</span> в сфере <span class="text-brand-color">градостроительства</span> и земельных правоотношений.</p>
           </div>
         </div>
     </div>
@@ -20,11 +27,10 @@
     </div>
     <div class="overflow-hidden pt-24 sm:pt-32">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto flex flex-col max-w-2xl sm:gap-y-20 lg:mx-0 lg:max-w-none lg:flex-row">
-            <div class="lg:pr-8 lg:pt-4">
-              <div class="lg:max-w-2xl">
-                <h1 class="text-3xl/10 font-sfemibold  text-white">ЦЕНИМ СЕРВИС, КОТОРЫЙ ПРЕВОСХОДИТ ОЖИДАНИЯ</h1>
-                <p class="mt-6 text-lg leading-8 text-white">
+          <div class="grid grid-cols-1 gap-x-4 gap-y-16 lg:grid-cols-[2.234fr_1fr]">
+              <div class="">
+                <h1 class="text-title text-white">ЦЕНИМ СЕРВИС, КОТОРЫЙ ПРЕВОСХОДИТ ОЖИДАНИЯ</h1>
+                <p class="mt-[2.188rem] text-base-text text-white">
                     Приветствую! Меня зовут Анна, я основатель компании Development 
                     Architecture. Более 10 лет развиваю бизнес в направлении получения 
                     исходно-разрешительной документации. Активно сотрудничаем с 
@@ -39,13 +45,12 @@
                     <a href="#" class="rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Связаться с руководителем</a>
                 </div>
               </div>
-            </div>
-            <img src="~/assets/img/photoService.jpg" class="h-192 object-cover w-192 mx-auto" alt="">
+            <img src="~/assets/img/photoService.jpg" class="h-192 object-cover w-full mx-auto" alt="">
           </div>
         </div>
       </div>
 
-      <div class="overflow-hidden py-8 sm:py-8">
+     <div class="overflow-hidden mb-20 py-16 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <Carousel :itemsToShow="3" :wrapAround="true" :transition="500">
                 <Slide v-for="slide in carusel" :key="slide.id">
@@ -59,22 +64,22 @@
               </Carousel>
         </div>
     </div>
-    <div class="bg-layout-pattern w-full bg-no-repeat bg-cover  py-24 sm:py-32">
+    <div class="bg-layout-pattern w-full bg-no-repeat bg-cover py-16 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-2">
-                <div class="text-left w-full mx-auto flex-auto flex-row gap-y-4">
+            <div class="grid grid-cols-1 gap-x-4 items-center gap-y-16 text-center lg:grid-cols-2">
+                <div class="grid gap-y-6 md:grid-cols-1 text-left max-w-xl">
                     <h1 class="text-center text-5xl font-bold tracking-tight text-white sm:text-2xl">DEVELOPMENT ARCHITECTURE</h1>
-                    <p class="mt-6 text-white sm:text-2xl/6">
+                    <p class="text-white sm:text-2xl/6">
                         Мы знаем, как в кратчайшие сроки подготовить
                         необходимую техническую документацию, с учётом всех 
                         необходимых требований.
                     </p>
                 </div>
-                <form action="">
-                    <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div class="grid grid-cols-1 gap-y-4 w-full">
+                    <h1 class="text-left text-white text-base">я хочу обратиться по такому вопросу</h1>
+                    <form action="" class="grid gap-6 md:grid-cols-2">
                         <div>
-                            <label for="countries" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">я хочу обратиться по такому вопросу</label>
-                                <select id="countries" class="bg-white border border-gray-300 text-total-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-total-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select id="countries" class="bg-white border-2 border-brand-color text-total-black text-sm rounded-lg focus:ring-brand-color focus:border-brand-color placeholder-total-black block w-full p-2.5 ">
                                     <option selected>Внесение изменений в ПЗЗ г.Москвы</option>
                                     <option value="US">United States</option>
                                     <option value="CA">Canada</option>
@@ -83,16 +88,14 @@
                             </select>
                         </div>
                         <div>
-                            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
-                            <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" required>
+                            <input type="text" id="last_name" class="bg-white border-2 border-brand-color text-total-black text-sm rounded-lg focus:ring-brand-color focus:border-brand-color placeholder-total-black block w-full p-2.5 " placeholder="Как вас зовут?" required>
                         </div>
                         <div>
-                            <label for="company" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Company</label>
-                            <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Flowbite" required>
+                            <input type="text" id="company" class="bg-white border-2 border-brand-color text-total-black text-sm rounded-lg focus:ring-brand-color focus:border-brand-color placeholder-total-black block w-full p-2.5 " placeholder="Flowbite" required>
                         </div>  
-                    </div>
-                    <button type="submit" class="rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Связаться с руководителем</button>
-                </form>
+                        <button type="submit" class="rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Связаться с руководителем</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -100,25 +103,27 @@
 
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      stats: [
-        {id: 1, name: 'реализованных проектов', value: '1000'},
-        {id: 2, name: 'кв. м. оформленных объектов', value: '50 000'},
-        {id: 3, name: 'удачно завершенных дел', value: '99%'},
-        {id: 4, name: 'довольных клиентов', value: '500'}
-      ],
-      carusel: [
-        {id: 1, img: 'bg-field1-pattern', title: 'Постановка на кадастровый учет объекта и регистрация права в Росреестре'},
-        {id: 2, img: 'bg-field2-pattern', title: 'Внесение изменений в правила землепользования и застройки'},
-        {id: 3, img: 'bg-field3-pattern', title: 'Разрешение на строительство'}
-      ],
-      select: ""
-    }
-  }
-}
+<script setup>
+import { ref } from 'vue'
+import {useScroll} from '@/features/scroll.js'
+
+const stats = [
+  {id: 1, name: 'реализованных проектов', value: '1000'},
+  {id: 2, name: 'кв. м. оформленных объектов', value: '50 000'},
+  {id: 3, name: 'удачно завершенных дел', value: '99%'},
+  {id: 4, name: 'довольных клиентов', value: '500'}
+]
+
+const carusel = [
+  {id: 1, img: 'bg-field1-pattern', title: 'Постановка на кадастровый учет объекта и регистрация права в Росреестре'},
+  {id: 2, img: 'bg-field2-pattern', title: 'Внесение изменений в правила землепользования и застройки'},
+  {id: 3, img: 'bg-field3-pattern', title: 'Разрешение на строительство'}
+]
+
+const {showButton, scrollToTop} = useScroll()
+console.log(showButton.value)
+console.log(scrollToTop)
+
 </script>
 
 <style lang="scss">

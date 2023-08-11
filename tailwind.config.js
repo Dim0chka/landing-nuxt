@@ -33,6 +33,21 @@ module.exports = {
       'brand-color': '#66FCF1',
       'white': '#ffffff',
       'total-black': '#000000'
+    },
+    fontSize: {
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+      'title': ['2.109rem', '3.438rem'],
+      'base-text': ['1.172rem', '1.556rem'],
+      'btn': ['0.938rem', '1.575rem'],
+      'title-carusel': ['1.828rem', '3.011rem'],
+      'title-form': ['0.75rem', '1.26rem'],
+      'text-input': ['0.563rem', '1.556rem']
     }
   },
   plugins: [],
