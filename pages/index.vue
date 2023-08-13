@@ -1,36 +1,36 @@
 <template>
-  <button
-      class="fixed bottom-4 right-4 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-full"
-      @click="scrollToTop"
-      v-show="showButton"
-    >
-      Наверх
-    </button>
     <div  class="isolate px-6 pt-14 lg:px-8">
-        <div class="mx-auto max-w-7xl py-32 sm:py-48 lg:py-56">
+        <div class="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
           <div class="text-center">
-            <h1 class=" font-bold tracking-tight text-white sm:text-title">DEVELOPMENT ARCHITECTURE</h1>
-            <p class="mt-6 text-base-text text-white">Скажи <span class="text-brand-color">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-brand-color">сложные вопросы</span> в сфере <span class="text-brand-color">градостроительства</span> и земельных правоотношений.</p>
+            <h1 class=" font-bold uppercase tracking-tight text-white sm:text-title">DEVELOPMENT ARCHITECTURE</h1>
+            <p class="mt-6 uppercase text-base-text text-white">Скажи <span class="text-brand-color">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-brand-color">сложные вопросы</span> в сфере <span class="text-brand-color">градостроительства</span> и земельных правоотношений.</p>
           </div>
         </div>
     </div>
     <div class="bg-moscow-pattern w-full bg-no-repeat bg-cover  py-24 sm:py-32">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-4">
-            <div v-for="stat in stats" :key="stat.id" class="mx-auto flex max-w-xs flex-col gap-y-4">
-                <hr class="h-0.5 bg-brand-color border-0 dark:bg-brand-color">
-                <dt class="text-xl leading-7 text-white">{{ stat.name }}</dt>
-                <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-6xl">{{ stat.value }}</dd>
-            </div>
+        <div class="mx-auto max-w-6xl px-6 lg:px-8">
+          <!-- <div class="flex justify-between items-center">
+            <dl v-for="stat in stats" :key="stat.id" class="mx-auto items-center flex max-w-xs flex-col gap-y-4">
+              <hr class="h-0.5 w-[85%] bg-brand-color border-0 dark:bg-brand-color">
+              <dt class="text-btn leading-7 text-white">{{ stat.name }}</dt>
+              <dd class="order-first text-5xl text-white sm:text-6xl">{{ stat.value }}</dd>
+           </dl>
+          </div> -->
+          <div class="grid grid-cols-1 gap-x-16 gap-y-16 text-center lg:grid-cols-4">
+            <dl v-for="stat in stats" :key="stat.id" class="items-center flex max-w-xs flex-col gap-y-4">
+                <hr class="h-0.5 w-full bg-brand-color border-0 dark:bg-brand-color">
+                <dt class="text-btn text-white">{{ stat.name }}</dt>
+                <dd class="order-first text-5xl text-white sm:text-6xl">{{ stat.value }}</dd>
             </dl>
+          </div>
         </div>
     </div>
     <div class="overflow-hidden pt-24 sm:pt-32">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <div class="grid grid-cols-1 gap-x-4 gap-y-16 lg:grid-cols-[2.234fr_1fr]">
+        <div class="mx-auto max-w-[1363px] px-6 lg:px-8">
+          <div class="grid grid-cols-1 gap-x-[7rem] gap-y-16 lg:grid-cols-[2.315fr_1fr]">
               <div class="">
                 <h1 class="text-title text-white">ЦЕНИМ СЕРВИС, КОТОРЫЙ ПРЕВОСХОДИТ ОЖИДАНИЯ</h1>
-                <p class="mt-[2.188rem] text-base-text text-white">
+                <p class="mt-[1.188rem] text-base-text text-white">
                     Приветствую! Меня зовут Анна, я основатель компании Development 
                     Architecture. Более 10 лет развиваю бизнес в направлении получения 
                     исходно-разрешительной документации. Активно сотрудничаем с 
@@ -39,10 +39,10 @@
                     и менее затратные пути решения поставленных задач. 
                     <br>
                     <br>
-                    <span class="mt-2 text-brand-color" >Будем рады стать Вашим деловым партнёром!</span>
+                    <span class="mt-2" >Будем рады стать Вашим деловым партнёром!</span>
                 </p>
-                <div class="text-center mt-10">
-                    <a href="#" class="rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Связаться с руководителем</a>
+                <div class="text-center mt-12 pt-[9px]">
+                    <a href="#" class="rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-btn font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Связаться с руководителем</a>
                 </div>
               </div>
             <img src="~/assets/img/photoService.jpg" class="h-192 object-cover w-full mx-auto" alt="">
@@ -59,7 +59,7 @@
                 </div>
                 </Slide>
                 <template #addons>
-                    <Navigation />
+                    <Navigation/>
                   </template>
               </Carousel>
         </div>
@@ -68,15 +68,15 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-4 items-center gap-y-16 text-center lg:grid-cols-2">
                 <div class="grid gap-y-6 md:grid-cols-1 text-left max-w-xl">
-                    <h1 class="text-center text-5xl font-bold tracking-tight text-white sm:text-2xl">DEVELOPMENT ARCHITECTURE</h1>
-                    <p class="text-white sm:text-2xl/6">
+                    <h1 class="text-center text-base-text font-bold tracking-tight text-white sm:text-base-text">DEVELOPMENT ARCHITECTURE</h1>
+                    <p class="text-white sm:text-base-text">
                         Мы знаем, как в кратчайшие сроки подготовить
                         необходимую техническую документацию, с учётом всех 
                         необходимых требований.
                     </p>
                 </div>
                 <div class="grid grid-cols-1 gap-y-4 w-full">
-                    <h1 class="text-left text-white text-base">я хочу обратиться по такому вопросу</h1>
+                    <h1 class="text-left text-white text-btn">я хочу обратиться по такому вопросу</h1>
                     <TheForm/>
                 </div>
             </div>
@@ -91,10 +91,10 @@ import { ref } from 'vue'
 import {useScroll} from '@/features/scroll.js'
 
 const stats = [
-  {id: 1, name: 'реализованных проектов', value: '1000'},
-  {id: 2, name: 'кв. м. оформленных объектов', value: '50 000'},
+  {id: 1, name: 'реализованных проектов', value: '>50'},
+  {id: 2, name: 'кв. м. оформленных объектов', value: '75 000'},
   {id: 3, name: 'удачно завершенных дел', value: '99%'},
-  {id: 4, name: 'довольных клиентов', value: '500'}
+  {id: 4, name: 'довольных клиентов', value: '>25'}
 ]
 
 const carusel = [

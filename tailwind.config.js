@@ -21,7 +21,7 @@ module.exports = {
         'social-icon': '10px 10px 60px rgba(102, 252, 241, 0.7)',
       },
       height: {
-        '192': '35rem',
+        '192': '30rem',
       },
       width: {
         '192': '30rem',
@@ -33,6 +33,7 @@ module.exports = {
       'brand-color': '#66FCF1',
       'white': '#ffffff',
       'total-black': '#000000',
+      'invalid': "#F46C6C"
     },
     fontSize: {
       sm: '0.8rem',
@@ -41,7 +42,7 @@ module.exports = {
       '2xl': '1.563rem',
       '3xl': '1.953rem',
       '4xl': '2.441rem',
-      '5xl': '3.052rem',
+      '5xl': '3rem',
       'title': ['2.109rem', '3.438rem'],
       'base-text': ['1.172rem', '1.556rem'],
       'btn': ['0.938rem', '1.575rem'],

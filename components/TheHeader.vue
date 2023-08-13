@@ -89,20 +89,6 @@ const navigation = [
   {name: 'Проекты', href: '/'},
   {name: 'Нам доверяют', href: '/'}
 ]
-
-// export default {
-//     data() {
-//         return {
-//             navigation: [
-//                 {name: 'О компании', href: '/'},
-//                 {name: 'Услуги', href: '/'},
-//                 {name: 'Проекты', href: '/'},
-//                 {name: 'Нам доверяют', href: '/'},
-//             ],
-//             mobileMenuOpen: false
-//         }
-//     }
-// }
 </script>
 
 <style>

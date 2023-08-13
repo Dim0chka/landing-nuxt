@@ -10,8 +10,8 @@ export function useForm(init = {}) {
     }
 
     form[valid] = computed( () => {
-        return Object.keys(form).filter(k => k !== 'validKey').reduce((acc, k) => {
-            acc = form[k].valid
+        return Object.keys(form).filter(k => k !== 'validKey').reduce((acc, key) => {
+            acc = form[key].valid
             return acc
         }, true)
     } )
