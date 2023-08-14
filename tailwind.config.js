@@ -27,14 +27,14 @@ module.exports = {
         '192': '30rem',
       }
     },
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      'brand-color': '#66FCF1',
-      'white': '#ffffff',
-      'total-black': '#000000',
-      'invalid': "#F46C6C"
-    },
+    // colors: {
+    //   transparent: 'transparent',
+    //   current: 'currentColor',
+    //   'brand-color': '#66FCF1',
+    //   'white': '#ffffff',
+    //   'total-black': '#000000',
+    //   'invalid': "#F46C6C"
+    // },
     fontSize: {
       sm: '0.8rem',
       base: '1rem',

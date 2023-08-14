@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
           <div class="text-center">
             <h1 class=" font-bold uppercase tracking-tight text-white sm:text-title">DEVELOPMENT ARCHITECTURE</h1>
-            <p class="mt-6 uppercase text-base-text text-white">Скажи <span class="text-brand-color">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-brand-color">сложные вопросы</span> в сфере <span class="text-brand-color">градостроительства</span> и земельных правоотношений.</p>
+            <p class="mt-6 uppercase text-base-text text-white">Скажи <span class="text-[#66FCF1]">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-[#66FCF1]">сложные вопросы</span> в сфере <span class="text-[#66FCF1]">градостроительства</span> и земельных правоотношений.</p>
           </div>
         </div>
     </div>
@@ -11,14 +11,14 @@
         <div class="mx-auto max-w-6xl px-6 lg:px-8">
           <!-- <div class="flex justify-between items-center">
             <dl v-for="stat in stats" :key="stat.id" class="mx-auto items-center flex max-w-xs flex-col gap-y-4">
-              <hr class="h-0.5 w-[85%] bg-brand-color border-0 dark:bg-brand-color">
+              <hr class="h-0.5 w-[85%] bg-[#66FCF1] border-0 dark:bg-[#66FCF1]">
               <dt class="text-btn leading-7 text-white">{{ stat.name }}</dt>
               <dd class="order-first text-5xl text-white sm:text-6xl">{{ stat.value }}</dd>
            </dl>
           </div> -->
           <div class="grid grid-cols-1 gap-x-16 gap-y-16 text-center lg:grid-cols-4">
             <dl v-for="stat in stats" :key="stat.id" class="items-center flex max-w-xs flex-col gap-y-4">
-                <hr class="h-0.5 w-full bg-brand-color border-0 dark:bg-brand-color">
+                <hr class="h-0.5 w-full bg-[#66FCF1] border-0 dark:bg-[#66FCF1]">
                 <dt class="text-btn text-white">{{ stat.name }}</dt>
                 <dd class="order-first text-5xl text-white sm:text-6xl">{{ stat.value }}</dd>
             </dl>
@@ -42,13 +42,22 @@
                     <span class="mt-2" >Будем рады стать Вашим деловым партнёром!</span>
                 </p>
                 <div class="text-center mt-12 pt-[9px]">
-                    <a href="#" class="rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-btn font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Связаться с руководителем</a>
+                    <a href="#" class="rounded-full bg-inherit border-2 border-[#66FCF1] px-3.5 py-2.5 text-btn font-semibold text-white shadow-sm hover:text-[#66FCF1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#66FCF1]">Связаться с руководителем</a>
                 </div>
               </div>
             <img src="~/assets/img/photoService.jpg" class="h-192 object-cover w-full mx-auto" alt="">
           </div>
         </div>
       </div>
+
+      <button @click="open = !open" class="bg-[red] text-white">
+        Click
+      </button>
+      <TheModal v-model:open="open">
+        <DialogPanel class="border-[1px] border-[#66FCF1] relative transform overflow-hidden rounded-lg bg-black text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[49.219rem]">
+          <TheFormModal/>
+        </DialogPanel>
+      </TheModal>
 
      <div class="overflow-hidden mb-20 py-16 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -87,8 +96,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import {useScroll} from '@/features/scroll.js'
+import { ref, onUpdated } from 'vue'
+import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
 const stats = [
   {id: 1, name: 'реализованных проектов', value: '>50'},
@@ -97,13 +106,18 @@ const stats = [
   {id: 4, name: 'довольных клиентов', value: '>25'}
 ]
 
+
 const carusel = [
   {id: 1, img: 'bg-field1-pattern', title: 'Постановка на кадастровый учет объекта и регистрация права в Росреестре'},
   {id: 2, img: 'bg-field2-pattern', title: 'Внесение изменений в правила землепользования и застройки'},
   {id: 3, img: 'bg-field3-pattern', title: 'Разрешение на строительство'}
 ]
 
-const {showButton, scrollToTop} = useScroll()
+const open = ref(false)
+
+onUpdated(() => {
+  console.log(open.value)
+})
 
 </script>
 

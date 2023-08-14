@@ -1,5 +1,5 @@
 <template>
-   <header class="bg-total-black fixed inset-x-0 top-0 z-50 border-b-2 border-brand-color">
+   <header class="bg-black fixed inset-x-0 top-0 z-50 border-b-2 border-[#66FCF1]">
       <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
           <a href="#" class="-m-1.5 p-1.5">
@@ -22,11 +22,11 @@
 
         <div class="hidden lg:flex lg:gap-x-12">
             <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-sm font-semibold leading-6 text-white">
-                <span class="link link-underline pb-1.5 link-underline-black text-black">{{ item.name }}</span>
+                <span class="link link-underline pb-1.5 link-underline-black">{{ item.name }}</span>
             </a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" class="rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Консультация</a>
+            <a href="#" class="rounded-full bg-inherit border-2 border-[#66FCF1] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-[#66FCF1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#66FCF1]">Консультация</a>
         </div>
       </nav>
 
@@ -50,16 +50,16 @@
           <div class="mt-6 flow-root">
             <div class="-my-6 divide-y divide-gray-500/10">
               <div class="space-y-2 py-6">
-                <a v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-brand-color">{{ item.name }}</a>
+                <a v-for="item in navigation" :key="item.name" :href="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-[#66FCF1]">{{ item.name }}</a>
               </div>
               <hr>
               <div class="p-1.5 flex items-center justify-between">
-                <a href="#" class="-mx-3 block rounded-full bg-inherit border-2 border-brand-color px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-brand-color focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-color">Консультация</a>
+                <a href="#" class="-mx-3 block rounded-full bg-inherit border-2 border-[#66FCF1] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:text-[#66FCF1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#66FCF1]">Консультация</a>
                 <div>234</div>
               </div>
             </div>
           </div>
-          <hr class="h-px my-8 bg-brand-color border-0 dark:bg-brand-color mt-20">
+          <hr class="h-px my-8 bg-[#66FCF1] border-0 dark:bg-[#66FCF1] mt-20">
           <div class="flex items-center justify-between">
             <a href="#" class="-m-1.5 p-1.5">
               <span class="sr-only">Your Company</span>
