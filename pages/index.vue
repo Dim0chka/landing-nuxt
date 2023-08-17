@@ -69,15 +69,15 @@
                 <template #addons>
                     <Navigation/>
                   </template>
-              </Carousel>
+            </Carousel>
         </div>
     </div>
     <div class="bg-layout-pattern w-full bg-no-repeat bg-cover py-16 sm:py-16">
         <div class="mx-auto max-w-[1363px] px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-4 items-center gap-y-16 text-center lg:grid-cols-2">
                 <div class="grid gap-y-6 md:grid-cols-1 text-left max-w-xl">
-                    <h1 class="text-center text-base-text font-bold tracking-tight text-white sm:text-base-text">DEVELOPMENT ARCHITECTURE</h1>
-                    <p class="text-white sm:text-base-text">
+                    <h1 class="text-center text-base-text text-white">DEVELOPMENT ARCHITECTURE</h1>
+                    <p class="text-white text-base-text">
                         Мы знаем, как в кратчайшие сроки подготовить
                         необходимую техническую документацию, с учётом всех 
                         необходимых требований.
