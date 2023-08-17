@@ -42,20 +42,19 @@
                     <span class="mt-2" >Будем рады стать Вашим деловым партнёром!</span>
                 </p>
                 <div class="text-center mt-12 pt-[9px]">
-                    <a href="#" class="rounded-full bg-inherit border-2 border-[#66FCF1] px-3.5 py-2.5 text-btn font-semibold text-white shadow-sm hover:text-[#66FCF1] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#66FCF1]">Связаться с руководителем</a>
+                  <TheBtn @click="open = !open">
+                    Связаться с руководителем
+                  </TheBtn>
                 </div>
               </div>
             <img src="~/assets/img/photoService.jpg" class="h-192 object-cover w-full mx-auto" alt="">
           </div>
         </div>
-      </div>
+      </div> 
 
-      <button @click="open = !open" class="bg-[red] text-white">
-        Click
-      </button>
       <TheModal v-model:open="open">
         <DialogPanel class="border-[1px] border-[#66FCF1] relative transform overflow-hidden rounded-lg bg-black text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[49.219rem]">
-          <TheFormModal/>
+          <TheFormModal @remove="removeModal"/>
         </DialogPanel>
       </TheModal>
 
@@ -63,9 +62,9 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <Carousel :itemsToShow="3" :wrapAround="true" :transition="500">
                 <Slide v-for="slide in carusel" :key="slide.id">
-                  <div :class="slide.img" class="flex items-center font-bold p-6 bg-no-repeat bg-cover justify-center rounded-xl text-base w-full min-h-[400px] carousel__item">
+                  <div @click="open = !open" :class="slide.img" class="flex items-center font-bold p-6 bg-no-repeat bg-cover justify-center rounded-xl text-base w-full min-h-[400px] carousel__item">
                     <h1 class="text-3xl/8 font-sfemibold  text-white">{{ slide.title }}</h1> 
-                </div>
+                  </div>
                 </Slide>
                 <template #addons>
                     <Navigation/>
@@ -74,7 +73,7 @@
         </div>
     </div>
     <div class="bg-layout-pattern w-full bg-no-repeat bg-cover py-16 sm:py-16">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-[1363px] px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-4 items-center gap-y-16 text-center lg:grid-cols-2">
                 <div class="grid gap-y-6 md:grid-cols-1 text-left max-w-xl">
                     <h1 class="text-center text-base-text font-bold tracking-tight text-white sm:text-base-text">DEVELOPMENT ARCHITECTURE</h1>
@@ -97,7 +96,7 @@
 
 <script setup>
 import { ref, onUpdated } from 'vue'
-import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { DialogPanel, DialogTitle} from '@headlessui/vue'
 
 const stats = [
   {id: 1, name: 'реализованных проектов', value: '>50'},
@@ -115,10 +114,9 @@ const carusel = [
 
 const open = ref(false)
 
-onUpdated(() => {
-  console.log(open.value)
-})
-
+const removeModal = (boolean) => {
+  open.value = boolean
+}
 </script>
 
 <style lang="scss">

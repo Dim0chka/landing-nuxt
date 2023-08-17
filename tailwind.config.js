@@ -51,6 +51,7 @@ module.exports = {
       'text-input': ['0.563rem', '1.556rem']
     }
   },
-  plugins: [],
+  plugins: [
+  ]
 }
 
