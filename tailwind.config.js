@@ -16,6 +16,7 @@ module.exports = {
         'field2-pattern': " url('~/assets/img/field2.jpg')",
         'field3-pattern': " url('~/assets/img/field3.jpg')",
         'layout-pattern': " url('~/assets/img/layoutInput.jpg')",
+        'layout-pattern-2': " url('~/assets/img/layoutInput2.jpg')",
       },
       boxShadow: {
         'social-icon': '10px 10px 60px rgba(102, 252, 241, 0.7)',
