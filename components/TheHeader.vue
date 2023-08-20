@@ -81,7 +81,7 @@
 
 <script setup>
 import {ref} from 'vue'
-
+import { Dialog, DialogPanel} from '@headlessui/vue'
 const mobileMenuOpen = ref(false)
 const navigation = [
   {name: 'О компании', href: '/'},

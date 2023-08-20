@@ -2,7 +2,7 @@
   <Listbox as="div" :modelValue="modelValue"
   @update:modelValue="value => emit('update:modelValue', value)"
   by="id">
-    <div class="relative mt-2">
+    <div class="relative">
       <ListboxButton :disabled="departments.unavailable" class="bg-white ring-[1px] ring-[#6A7275] text-[#2E3639] text-title-form rounded-lg focus:outline-none focus:ring-[2px] focus:ring-[#66FCF1] block w-full p-[1rem_1rem_1rem_1.5rem] relative cursor-default text-left ring-inset">
         <span class="flex items-center">
           <span class="block truncate">{{ modelValue.name }}</span>
@@ -43,11 +43,18 @@ const props = defineProps({ modelValue: Object })
 const emit = defineEmits(['update:modelValue'])
 
 const departments = [
-    { id: 1, name: 'Marketing'},
-    { id: 2, name: 'HR' },
-    { id: 3, name: 'Sales'},
-    { id: 4, name: 'Finance'},
-    { id: 5, name: 'Customer service'},
+    { id: 1, name: 'Внесение изменений в правила землепользования и застройки'},
+    { id: 2, name: 'Постановка на кадастровый учет объекта и регистрация права в Росреестре' },
+    { id: 3, name: 'Разрешение на строительство'},
+    { id: 4, name: 'Свидетельство об утверждении АГР'},
+    { id: 5, name: 'Разработка концепции проекта'},
+    { id: 6, name: 'Анализ и проработка градпотенциала'},
+    { id: 7, name: 'Сокращение СЗЗ'},
+    { id: 8, name: 'Легализация самостроя'},
+    { id: 9, name: 'Согласование с аэропортами'},
+    { id: 10, name: 'Кадастровые работы'},
 ]
+
+
 </script>
 
