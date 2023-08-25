@@ -9,8 +9,9 @@ h1, h2, h3, h4, h5, h6, dd {
     font-family: Prosto One;
 }
 
-body {
+html, body {
     background-color: #000;
     color: #fff;
     font-family: Prosto;
+    scroll-behavior: smooth;
 }

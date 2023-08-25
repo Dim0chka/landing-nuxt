@@ -1,17 +1,23 @@
 <template>
-    <div  class="isolate px-6 pt-14 lg:px-8">
+  <div class="isolate pt-[100px]">
+      <video autoplay muted class="w-full h-auto max-w-full" loop controls>
+        <source src="~/assets/video/IMG_3597.mp4" type="video/mp4">
+      </video>
+  </div>
+
+    <div class="isolate px-6 pt-14 lg:px-8">
         <div class="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
           <div class="text-center">
-            <h1 class=" font-bold uppercase tracking-tight text-white sm:text-title">DEVELOPMENT ARCHITECTURE</h1>
+            <h1 class=" font-bold uppercase tracking-tight text-white text-title">DEVELOPMENT ARCHITECTURE</h1>
             <p class="mt-6 uppercase text-base-text text-white">Скажи <span class="text-[#66FCF1]">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-[#66FCF1]">сложные вопросы</span> в сфере <span class="text-[#66FCF1]">градостроительства</span> и земельных правоотношений.</p>
           </div>
         </div>
     </div>
-    <div class="bg-moscow-pattern w-full bg-no-repeat bg-cover  py-24 sm:py-32">
+    <div id="moscow" class="bg-moscow-pattern w-full bg-no-repeat bg-cover  py-24 sm:py-32">
         <div class="mx-auto max-w-6xl px-6 lg:px-8">
-          <div class="grid grid-cols-1 gap-x-16 gap-y-16 text-center lg:grid-cols-4">
-            <dl v-for="stat in stats" :key="stat.id" class="items-center flex max-w-xs flex-col gap-y-4">
-                <hr class="h-0.5 w-full bg-[#66FCF1] border-0 dark:bg-[#66FCF1]">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-16 text-center justify-center lg:grid-cols-4">
+            <dl v-for="stat in stats" :key="stat.id" class="items-center flex lg:max-w-xs flex-col gap-y-4">
+                <hr class="h-0.5 w-[235px] lg:w-full bg-[#66FCF1] border-0 dark:bg-[#66FCF1]">
                 <dt class="text-btn text-white">{{ stat.name }}</dt>
                 <dd class="order-first text-5xl text-white sm:text-6xl">{{ stat.value }}</dd>
             </dl>
@@ -19,9 +25,9 @@
         </div>
     </div>
     <div class="overflow-hidden pt-24 sm:pt-32">
-        <div class="mx-auto max-w-[1363px] px-6 lg:px-8">
+        <div class="mx-auto max-w-[1363px] md:px-6 lg:px-8">
           <div class="grid grid-cols-1 gap-x-[7rem] gap-y-16 lg:grid-cols-[2.315fr_1fr]">
-              <div class="">
+              <div class="px-6 md:p-0">
                 <h1 class="text-title text-white">ЦЕНИМ СЕРВИС, КОТОРЫЙ ПРЕВОСХОДИТ ОЖИДАНИЯ</h1>
                 <p class="mt-[1.188rem] text-base-text text-white">
                     Приветствую! Меня зовут Анна, я основатель компании Development 
@@ -35,9 +41,9 @@
                     <span class="mt-2" >Будем рады стать Вашим деловым партнёром!</span>
                 </p>
                 <div class="text-center mt-12 pt-[9px]">
-                  <TheBtn @click="open = !open">
+                  <UI-TheBtn @click="open = !open">
                     Связаться с руководителем
-                  </TheBtn>
+                  </UI-TheBtn>
                 </div>
               </div>
             <img src="~/assets/img/photoService.jpg" class="h-192 object-cover w-full mx-auto" alt="">
@@ -50,7 +56,7 @@
 
 
       <!-- modal Carusel -->
-      <TheModal v-model:open="open2">
+      <TheModal v-model:open="open2" v-model="current">
         <DialogPanel class="relative transform overflow-hidden rounded-lg text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[73.75rem]">
           <Carousel v-model="currentSlide" :itemsToShow="1" :wrapAround="true" :transition="500">
             <Slide v-for="slide in carusel" :key="slide.id">
@@ -74,9 +80,10 @@
                         </div>
                       </div>
                       <div class="flex items-center justify-center">
-                        <TheBtn tabindex="0" class="bg-[#45A29E] border-[#45A29E]" @click.once="openModalForm({id: slide.id, name: slide.title})">
-                            Консультация
-                        </TheBtn>
+                        <button @click.once="openModalForm({id: slide.id, name: slide.title})" type="submit" class="rounded-full bg-[#45A29E] border-2 border-[#45A29E] px-16 py-2 text-btn text-white hover:bg-[#66FCF1] focus:text-[#45A29E] disabled:border-[#45A29E] disabled:bg-[#45A29E] disabled:text-white ">
+                          Консультация
+                        </button>
+
                       </div>
                     </div>
                 </div>
@@ -90,10 +97,10 @@
 
      <div class="overflow-hidden mb-20 py-16 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <Carousel v-model="currentSlide" :itemsToShow="3" :wrapAround="true" :transition="500">
+            <Carousel v-model="currentSlide" :itemsToShow="3" :breakpoints="breakpoints" :wrapAround="true" :transition="500">
                 <Slide v-for="slide in carusel" :key="slide.id">
                   <div @click="slideTo(slide.id - 1)" :class="slide.img" class="flex items-center font-bold p-6 bg-no-repeat bg-cover justify-center rounded-xl text-base w-full min-h-[400px] carousel__item">
-                    <h1 class="text-3xl/8 font-sfemibold  text-white">{{ slide.title }}</h1> 
+                    <h1 class="text-title-carusel text-white">{{ slide.title }}</h1> 
                   </div>
                 </Slide>
                 <template #addons>
@@ -105,7 +112,7 @@
     <div class="bg-layout-pattern w-full bg-no-repeat bg-cover py-16 sm:py-16">
         <div class="mx-auto max-w-[1363px] px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-4 items-center gap-y-16 text-center lg:grid-cols-2">
-                <div class="grid gap-y-6 md:grid-cols-1 text-left max-w-xl">
+                <div class="grid gap-y-6 md:grid-cols-1 text-left lg:max-w-xl">
                     <h1 class="text-center text-base-text text-white">DEVELOPMENT ARCHITECTURE</h1>
                     <p class="text-white text-base-text">
                         Мы знаем, как в кратчайшие сроки подготовить
@@ -121,29 +128,42 @@
         </div>
     </div>
 
-    <h1>ЧТО-ТО ТУТ ЕСТЬ</h1>
+    <div class="grid w-full grid-cols-[repeat(auto-fill,_100%)] lg:grid-cols-[repeat(auto-fill,_33%)] md:grid-cols-[repeat(auto-fill,_50%)]">
+      <div v-for="photo in img" :key="photo.id" :class="photo.img" class="h-[480px] bg-no-repeat bg-cover flex justify-start items-end p-[1.969rem_2.906rem] uppercase text-base-text">
+        <h1>{{ photo.name }}</h1>
+      </div>
+    </div>
 
     <div class="bg-layout-pattern-2 w-full bg-no-repeat bg-cover py-16 sm:py-16">
       <div class="mx-auto max-w-[1296px] px-6 lg:px-8">
-          <div class="grid grid-cols-1 gap-x-4 items-center gap-y-16 text-center">
+          <div class="grid grid-cols-1 gap-6 items-center text-left md:text-center">
             <p class="text-base-text uppercase">
               К сожалению мы не можем выложить все наши работы, для нас немаловажную роль играет конфиденциальность клиентов, но мы знаем как решить любой вопрос с недвижимостью
             </p>
-              <form @submit.prevent="submit" action="" class="grid items-start gap-x-[1.547rem] grid-cols-3 text-left">
+              <form @submit.prevent="submit" action="" class="grid items-start gap-x-[1.547rem] md:grid-cols-3 gap-y-[2rem] text-left">
                 <div>
-                    <TheInput :class="{'ring-[#B63030] focus:ring-[#B63030]': form.name.touched && !form.name.valid}" @blur="form.name.blur" v-model="form.name.value" type="text" id="name" placeholder="Имя"/>
+                    <UI-TheInput :class="{'ring-[#B63030] focus:ring-[#B63030]': form.name.touched && !form.name.valid}" @blur="form.name.blur" v-model="form.name.value" type="text" id="name" placeholder="Имя"/>
                     <small class="text-[#B63030] text-[10px]" v-if="form.name.touched && form.name.errors.required">Обязательно для заполнения</small>
                 </div>
                 <div >
-                    <TheInput :class="{'ring-[#B63030] focus:ring-[#B63030]': form.phone.touched && !form.phone.valid}"  @blur="form.phone.blur" v-model="form.phone.value" type="text" id="tel" placeholder="Телефон"/>
+                    <UI-TheInput :class="{'ring-[#B63030] focus:ring-[#B63030]': form.phone.touched && !form.phone.valid}"  @blur="form.phone.blur" v-model="form.phone.value" type="text" id="tel" placeholder="Телефон"/>
                     <small class="text-[#B63030] text-[10px]" v-if="form.phone.touched && form.phone.errors.required">Обязательно для заполнения</small>
                     <small class="text-[#B63030] text-[10px]" v-else-if="form.phone.touched && form.phone.errors.minLength">Минимальное кол-во 8. Сейчас {{ form.phone.value.length }}</small>
                 </div>
-                <TheBtn :disabled="!form.validKey" @click="submit" type="submit">
+                <UI-TheBtn :disabled="!form.validKey" @click="submit" type="submit">
                   Бесплатная консультация
-                </TheBtn>
+                </UI-TheBtn>
             </form>
           </div>
+      </div>
+  </div>
+
+  <div class="overflow-hidden mb-20 py-16 sm:py-16">
+    <div class="mx-auto max-w-[1363px] lg:px-8">
+      <div class="grid gap-y-[5.875rem] grid-cols-1 ">
+        <h1 class="uppercase text-center text-title">Нам доверяют</h1>
+        <TheCarouselLogo/>
+    </div>
       </div>
   </div>
 
@@ -164,6 +184,17 @@ const stats = [
   {id: 2, name: 'кв. м. оформленных объектов', value: '75 000'},
   {id: 3, name: 'удачно завершенных дел', value: '99%'},
   {id: 4, name: 'довольных клиентов', value: '>25'}
+]
+const img = [
+  {id: 1, img: 'bg-photo1', name: 'ГАРАЖНЫЙ КОМПЛЕКС ул.Борисовские Пруды' },
+  {id: 2, img: 'bg-photo2', name: 'университет нефти и газа имени И.М. Губкина' },
+  {id: 3, img: 'bg-photo3', name: 'МАГАЗИН СЕВЕРНОЕ БУТОВО БУЛЬВАР ДМИТРИЯ ДОНСКОГО' },
+  {id: 4, img: 'bg-photo4', name: 'КУЛЬТУРНО-ДОСУГОВЫЙ КОМПЛЕКС МИТИНО УЛ.ДУБРАВНАЯ' },
+  {id: 5, img: 'bg-photo5', name: 'СПОРТИВНЫЙ КОМПЛЕКС ЖУЛЕБИНО МКР.6'},
+  {id: 6, img: 'bg-photo6', name: 'СПОРТИВНЫЙ КОМПЛЕКС ПОСЕЛОК КИЕВСКИЙ' },
+  {id: 7, img: 'bg-photo7', name: 'ТОРГОВЫЙ КОМПЛЕКС Г.ПОДОЛЬСК' },
+  {id: 8, img: 'bg-photo8', name: 'ОБЩЕСТВЕННЫЙ КОМПЛЕКС УЛ.МАРШАЛА СОВИЦКОГО' },
+  {id: 9, img: 'bg-photo9', name: 'ОБЩЕСТВЕННЫЙ КОМПЛЕКС УЛ.СИНЕЛЬНИКОВСКАЯ' }
 ]
 const carusel = [
     {id: 1, title: 'Внесение изменений в правила землепользования и застройки', bodyTitle: 'НАИБОЛЕЕ ЧАСТЫЕ ПРИЧИНЫ ВНЕСЕНИЯ ИЗМЕНЕНИЙ В ПЗЗ:', body: ['Вид разрешённого использования ЗУ не соответствует целям бизнеса — Смена вида разрешённого использования;', 'Невозможна реконструкция объектов с преобразованием ТЭПов — Изменение технико-экономических показателей;', 'ПЗЗ ограничивает возможности нового строительства — Снятие запрета на строительство;', 'Градостроительные регламенты препятствуют строительству — Получение разрешения на строительство.'], img: 'bg-field2-pattern'},
@@ -196,6 +227,16 @@ const form = useForm({
         validator: {required, minLength: minLength(8)}
     }
 })
+
+const breakpoints = {
+    1024: {
+        itemsToShow: 3,
+    },
+    300: {
+        itemsToShow: 1,
+        snapAlign: 'center',
+    }
+}
 
 function submit() {
     form.name.value = ''
@@ -231,7 +272,7 @@ onUpdated(() => {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .carousel__prev,
 .carousel__next {
   box-sizing: content-box;
@@ -260,27 +301,32 @@ onUpdated(() => {
     transition: 0.5s;
   }
   
-  .carousel__slide {
-    opacity: 0.9;
-    transform: scale(0.95);
+
+  @media (min-width: 1024px) {
+
+    .carousel__slide {
+      opacity: 0.9;
+      transform: scale(0.95);
+    }
+    
+    .carousel__slide--active ~ .carousel__slide {
+      transform:  scale(0.95);
+    }
+    
+    .carousel__slide--prev {
+      opacity: 1;
+      transform: scale(0.95);
+    }
+    
+    .carousel__slide--next {
+      opacity: 1;
+      transform: scale(0.95);
+    }
+    
+    .carousel__slide--active {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
-  
-  .carousel__slide--active ~ .carousel__slide {
-    transform:  scale(0.95);
-  }
-  
-  .carousel__slide--prev {
-    opacity: 1;
-    transform: scale(0.95);
-  }
-  
-  .carousel__slide--next {
-    opacity: 1;
-    transform: scale(0.95);
-  }
-  
-  .carousel__slide--active {
-    opacity: 1;
-    transform: scale(1);
-  }
+
 </style>

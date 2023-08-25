@@ -6,8 +6,8 @@ import {
 import {
     faXmark as fasXmark,
     faBars as fasBars,
+    faArrowUp as FasArrowUp
 } from '@fortawesome/free-solid-svg-icons'
-import {faTelegram as fabTelegram} from '@fortawesome/free-brands-svg-icons'
 
 // This is important, we are going to let Nuxt not worry about the CSS
 config.autoAddCss = false
@@ -17,7 +17,7 @@ config.autoAddCss = false
 library.add(
     fasXmark,
     fasBars,
-    fabTelegram
+    FasArrowUp
 )
 
 export default defineNuxtPlugin(({vueApp}) => {
