@@ -67,7 +67,7 @@
              </button>
                 <div class="bg-white overflow-y-scroll flex flex-col lg:flex-row rounded-xl w-full h-[650px] p-[66px_45px_82px_45px] max-w-full">
                     <div class="flex justify-center items-center">
-                        <div class="rounded-xl h-[450px] lg:h-full w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
+                        <div class="rounded-xl h-[450px] lg:h-full w-full lg:w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
                     </div>
                     <div class="bg-white pl-[27px] flex flex-col justify-between">
                       <div class="">

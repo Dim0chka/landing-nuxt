@@ -29,7 +29,7 @@
             <!-- <a class="text-btn mr-[20px] text-white" href="">
                 <span class="link link-underline pb-1.5 link-underline-black">+7 919 108 11 17</span>
             </a> -->
-            <UI-TheBtn>
+            <UI-TheBtn @click="store.open">
                 Консультация
             </UI-TheBtn>
          </div>
@@ -40,6 +40,9 @@
  <script setup>
  import {ref} from 'vue'
  import { Dialog, DialogPanel} from '@headlessui/vue'
+ import { useModalStore } from '~/store/modal' 
+
+const store = useModalStore()
 
  const navigation = [
    {name: 'О компании', href: '/'},
