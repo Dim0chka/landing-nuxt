@@ -1,8 +1,9 @@
 <template>
     <div>
         <TheHeader/>
-        <slot />
+        <slot/>
+        <TheModalForm/>
         <TheFixedBtn/>
-        <TheFooter />
+        <TheFooter/>
     </div>
 </template>

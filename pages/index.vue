@@ -41,7 +41,7 @@
                     <span class="mt-2" >Будем рады стать Вашим деловым партнёром!</span>
                 </p>
                 <div class="text-center mt-12 pt-[9px]">
-                  <UI-TheBtn @click="open = !open">
+                  <UI-TheBtn @click="store.open">
                     Связаться с руководителем
                   </UI-TheBtn>
                 </div>
@@ -52,17 +52,22 @@
       </div> 
 
       <!-- modal form -->
-      <TheModalForm v-model:open="open" :selectValue="select"/>
+      <!-- <TheModalForm v-model:open="open" :selectValue="select"/> -->
 
 
       <!-- modal Carusel -->
-      <TheModal v-model:open="open2" v-model="current">
-        <DialogPanel class="relative transform overflow-hidden rounded-lg text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[73.75rem]">
+      <TheModal v-model:open="open2">
+        <DialogPanel class="relative transform rounded-lg text-left shadow-xl transition-all sm:my-8 max-w-full lg:max-w-[73.75rem]">
           <Carousel v-model="currentSlide" :itemsToShow="1" :wrapAround="true" :transition="500">
             <Slide v-for="slide in carusel" :key="slide.id">
-                <div class="bg-white rounded-xl max-w-sm w-full h-[650px] p-[66px_45px_82px_45px] lg:max-w-full lg:flex">
+              <button @click="open2 = false" type="button" class="text-[#44A29E] absolute top-3 right-2.5 bg-transparent hover:bg-[#44A29E] hover:text-white rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+             </button>
+                <div class="bg-white overflow-y-scroll flex flex-col lg:flex-row rounded-xl w-full h-[650px] p-[66px_45px_82px_45px] max-w-full">
                     <div class="flex justify-center items-center">
-                        <div class="rounded-xl h-full lg:w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
+                        <div class="rounded-xl h-[450px] lg:h-full w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
                     </div>
                     <div class="bg-white pl-[27px] flex flex-col justify-between">
                       <div class="">
@@ -83,7 +88,6 @@
                         <button @click.once="openModalForm({id: slide.id, name: slide.title})" type="submit" class="rounded-full bg-[#45A29E] border-2 border-[#45A29E] px-16 py-2 text-btn text-white hover:bg-[#66FCF1] focus:text-[#45A29E] disabled:border-[#45A29E] disabled:bg-[#45A29E] disabled:text-white ">
                           Консультация
                         </button>
-
                       </div>
                     </div>
                 </div>
@@ -174,7 +178,9 @@
 import { ref, onUpdated } from 'vue'
 import { DialogPanel, DialogTitle} from '@headlessui/vue'
 import {useForm} from '@/features/form'
+import {useModalStore} from '~/store/modal'
 
+const store = useModalStore()
 
 const currentSlide = ref(0)
 const open = ref(false)
@@ -251,36 +257,38 @@ function slideTo(val) {
   open2.value = true
 }
 
-const select = ref({id: 0, name: 'Выбор услуг'})
-
 function openModalForm(obj) {
-  select.value = obj
-  open.value = true
+  console.log(obj)
 }
 
-onUpdated(() => {
-  console.log(select.value)
-  if (open.value === true) {
-    open2.value = false 
-  } else {
-    open.value = false
-    select.value = {id: 0, name: 'Выбор услуг'}
-  }
-})
+// onUpdated(() => {
+//   console.log(select.value)
+//   if (open.value === true) {
+//     open2.value = false 
+//   } else {
+//     open.value = false
+//     select.value = {id: 0, name: 'Выбор услуг'}
+//   }
+// })
 
 
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .carousel__prev,
 .carousel__next {
   box-sizing: content-box;
   background-color: #45A29E;
   border-radius: 50%;
+  border: 1px solid #45A29E;
 
   svg {
     color: #66FCF1
+  }
+
+  &:hover {
+    border-color: #66FCF1;
   }
 }
 

@@ -3,9 +3,9 @@
   @update:modelValue="value => emit('update:modelValue', value)"
   by="id">
     <div class="relative">
-      <ListboxButton :disabled="departments.unavailable" class="bg-white ring-[1px] ring-[#6A7275] text-[#2E3639] text-title-form rounded-lg focus:outline-none focus:ring-[2px] focus:ring-[#66FCF1] block w-full p-[1rem_1rem_1rem_1.5rem] relative cursor-default text-left ring-inset">
+      <ListboxButton :disabled="departments.unavailable" class="relative w-full bg-white ring-[1px] ring-[#6A7275] text-[#2E3639] text-title-form rounded-lg focus:outline-none focus:ring-[2px] focus:ring-[#66FCF1] block p-[1rem_1rem_1rem_1.5rem] cursor-default text-left ring-inset">
         <span class="flex items-center">
-          <span class="block truncate">{{ modelValue.name }}</span>
+          <span class="block truncate max-w-[59vw] sm:max-w-[100%]">{{ modelValue.name ? modelValue.name : "Выбор услуг" }}</span>
         </span>
         <span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
           <svg class="h-5 w-5 text-gray-400" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -36,7 +36,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/vue'
 
 const props = defineProps({ modelValue: Object })

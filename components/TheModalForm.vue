@@ -1,24 +1,24 @@
 <template>
-    <TransitionRoot  as="template" :show="props.open">
-      <Dialog as="div" class="relative z-50" @click="$emit('update:open', false)">
+    <TransitionRoot  as="template" :show="store.modal">
+      <Dialog as="div" class="relative z-50" @click="close">
         <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
         
           <div class="fixed inset-0 z-10 overflow-y-auto bg-black bg-opacity-70">
-          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center lg:p-0">
             <DialogPanel @click.stop class="border-[1px] border-[#1F2833] relative transform overflow-hidden rounded-lg bg-black text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[49.219rem]">
-              <div class="p-[6.422rem_5.672rem]">
-                <button @click="$emit('update:open', false)" type="button" class="text-white absolute top-3 right-2.5 bg-transparent hover:bg-[#66FCF1] hover:text-gray-900 rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
+              <div class="p-[2.422rem_2.672rem] md:p-[6.422rem_5.672rem]">
+                <button @click="close" type="button" class="text-white absolute top-3 right-2.5 bg-transparent hover:bg-[#66FCF1] hover:text-gray-900 rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
                 </button>
                 <div class="grid grid-cols-1 gap-y-[4.375rem]">
                     <div class="grid grid-cols-1 gap-y-4">
-                        <h1 class="text-title text-white">Получить консультацию</h1>
+                        <h1 class="text-[1.5rem] text-white md:text-title">Получить консультацию</h1>
                         <p class="text-title-form text-white">От вас требуются только данные для звонка специалиста</p>
                     </div>
-                    <form class="grid" method="post">
-                        <div class="grid grid-cols-2 gap-x-[1.5rem] mb-6">
+                    <form class="grid" @submit.prevent>
+                        <div class="grid grid-cols-1 gap-y-[1.5rem] md:grid-cols-2 gap-x-[1.5rem] mb-6">
                             <div>
                                 <label for="name" class="block text-title-form" :class="{'text-[#B63030]': form.name.touched && !form.name.valid}">Имя</label>
                                 <UI-TheInput :class="{'ring-[#B63030] focus:ring-[#B63030]': form.name.touched && !form.name.valid}" @blur="form.name.blur" v-model="form.name.value" type="text" id="name" placeholder="Имя"/>
@@ -33,7 +33,8 @@
                         </div>
                         <div class="mb-14">
                             <label for="countries" class="block text-title-form text-white">Услуги</label>
-                            <UI-TheSelect id="countries" v-model:modelValue="form.select.value"/>
+                            <UI-TheSelect :class="{'ring-[#B63030] focus:ring-[#B63030]': form.select.touched && !form.select.valid}" @blur="form.select.blur" v-model:modelValue="form.select.value"/>
+                            <small class="text-[#B63030] text-[10px]" v-if="form.select.touched && form.select.errors.required">Обязательно для заполнения</small>
                         </div>
                         <div class="grid items-center justify-center mb-7">
                             <UI-TheBtn v-show="!loader" :disabled="!form.validKey" @click="submit"  type="submit">
@@ -62,25 +63,20 @@
   </template>
   
 <script setup>
-import { ref, defineProps, onUpdated, onMounted } from 'vue'
-import {useForm} from '@/features/form'
+import { ref } from 'vue'
+import { useForm } from '@/features/form'
+import { useModalStore } from '~/store/modal'
 import { Dialog, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
-const props = defineProps({
-    open: {
-        type: Boolean
-    },
-    selectValue: {
-        type: Object
-    }
-})
+const store = useModalStore()
 
 const required = val => !!val
 const minLength = num => val => val.length >= num
 
 const form = useForm({
     select: {
-        value: {},
+        value: '',
+        validator: {required}
     },
     name: {
         value: '',
@@ -95,36 +91,23 @@ const form = useForm({
 const loader = ref(false)
 
 async function submit() {
-    const response = await fetch(`http://127.0.0.1:5000//sendmail/${form.select.value.name}/${form.name.value}/${form.phone.value}`, {
-        method: 'POST'
-    })
-    const data = await response.json()
-
-    alert(data)
-    return data
-
+    loader.value = true 
+    setTimeout(() => {
+        form.name.value = ''
+        form.name.touched = false 
+        form.phone.value = ''
+        form.phone.touched = false 
+        form.select.value = ''
+        loader.value = false
+    }, 4000)
 }
 
-
-onMounted(() => {
-    form.select.value = props.selectValue
-    if (props.open === false) {
-        form.name.value = ''
-        form.name.touched = false 
-        form.phone.value = ''
-        form.phone.touched = false 
-        form.select.value = {id: 0, name: 'Выбор услуг'}
-    }
-})
-
-onUpdated(() => {
-    form.select.value = props.selectValue
-    if (props.open === false) {
-        form.name.value = ''
-        form.name.touched = false 
-        form.phone.value = ''
-        form.phone.touched = false 
-        form.select.value = {id: 0, name: 'Выбор услуг'}
-    }
-})
+function close() {
+    store.close()
+    form.name.value = ''
+    form.name.touched = false 
+    form.phone.value = ''
+    form.phone.touched = false 
+    form.select.value = ''
+}
 </script>

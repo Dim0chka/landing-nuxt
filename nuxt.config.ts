@@ -2,7 +2,15 @@
 export default defineNuxtConfig({
   modules: [
     'vue3-carousel-nuxt',
+    '@pinia/nuxt'
   ],
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
   plugins: [
     {src: '~/plugins/fontawesome.js'},
   ],
