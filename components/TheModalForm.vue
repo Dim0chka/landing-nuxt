@@ -66,9 +66,11 @@
 import { ref } from 'vue'
 import { useForm } from '@/features/form'
 import { useModalStore } from '~/store/modal'
+import { useSelectStore } from '~/store/select'
 import { Dialog, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
 const store = useModalStore()
+
 
 const required = val => !!val
 const minLength = num => val => val.length >= num
@@ -97,7 +99,7 @@ async function submit() {
         form.name.touched = false 
         form.phone.value = ''
         form.phone.touched = false 
-        form.select.value = ''
+        useSelectStore().newValue('')
         loader.value = false
     }, 4000)
 }
@@ -108,6 +110,6 @@ function close() {
     form.name.touched = false 
     form.phone.value = ''
     form.phone.touched = false 
-    form.select.value = ''
+    useSelectStore().newValue('')
 }
 </script>

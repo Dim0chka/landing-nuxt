@@ -1,6 +1,6 @@
 <template>
   <div class="isolate pt-[100px]">
-      <video autoplay muted class="w-full h-auto max-w-full" loop controls>
+      <video controlsList="nodownload noplaybackrate norewind nofullscreen nostop" autoplay muted class="w-full h-auto max-w-full" loop controls>
         <source src="~/assets/video/IMG_3597.mp4" type="video/mp4">
       </video>
   </div>
@@ -19,7 +19,7 @@
             <dl v-for="stat in stats" :key="stat.id" class="items-center flex lg:max-w-xs flex-col gap-y-4">
                 <hr class="h-0.5 w-[235px] lg:w-full bg-[#66FCF1] border-0 dark:bg-[#66FCF1]">
                 <dt class="text-btn text-white">{{ stat.name }}</dt>
-                <dd class="order-first text-5xl text-white sm:text-6xl">{{ stat.value }}</dd>
+                <dd class="order-first text-5xl lg:text-[2.8rem] xl:text-5xl text-white sm:text-6xl">{{ stat.value }}</dd>
             </dl>
           </div>
         </div>
@@ -88,7 +88,7 @@
                         <button @click.once="openModalForm({id: slide.id, name: slide.title})" type="submit" class="rounded-full bg-[#45A29E] border-2 border-[#45A29E] px-16 py-2 text-btn text-white hover:bg-[#66FCF1] focus:text-[#45A29E] disabled:border-[#45A29E] disabled:bg-[#45A29E] disabled:text-white ">
                           Консультация
                         </button>
-                      </div>
+                      </div>    
                     </div>
                 </div>
             </Slide>
@@ -177,8 +177,9 @@
 <script setup>
 import { ref, onUpdated } from 'vue'
 import { DialogPanel, DialogTitle} from '@headlessui/vue'
-import {useForm} from '@/features/form'
-import {useModalStore} from '~/store/modal'
+import { useForm } from '@/features/form'
+import { useModalStore } from '~/store/modal'
+import { useSelectStore } from '~/store/select'
 
 const store = useModalStore()
 
@@ -258,7 +259,9 @@ function slideTo(val) {
 }
 
 function openModalForm(obj) {
-  console.log(obj)
+  useSelectStore().newValue(obj)
+  open2.value = false
+  store.open()
 }
 
 // onUpdated(() => {
@@ -276,6 +279,17 @@ function openModalForm(obj) {
 </script>
 
 <style lang="scss">
+video::-webkit-media-controls-enclosure {
+  display:none !important;
+}
+
+video::-webkit-media-controls-stop-button {
+  display: none;
+}
+
+
+
+
 .carousel__prev,
 .carousel__next {
   box-sizing: content-box;

@@ -4,6 +4,10 @@ export default defineNuxtConfig({
     'vue3-carousel-nuxt',
     '@pinia/nuxt'
   ],
+  buildModules: [
+    '@nuxtjs/pwa',
+  ],
+  ssr: true,
   pinia: {
     autoImports: [
       // automatically imports `defineStore`
