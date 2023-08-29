@@ -57,24 +57,24 @@
 
       <!-- modal Carusel -->
       <TheModal v-model:open="open2">
-        <DialogPanel class="relative transform rounded-lg text-left shadow-xl transition-all sm:my-8 max-w-full lg:max-w-[73.75rem]">
+        <DialogPanel class="relative transform rounded-lg text-left shadow-xl transition-all sm:my-8 max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[73.75rem]">
           <Carousel v-model="currentSlide" :itemsToShow="1" :wrapAround="true" :transition="500">
             <Slide v-for="slide in carusel" :key="slide.id">
-              <button @click="open2 = false" type="button" class="text-[#44A29E] absolute top-3 right-2.5 bg-transparent hover:bg-[#44A29E] hover:text-white rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                </svg>
-             </button>
-                <div class="bg-white overflow-y-scroll flex flex-col lg:flex-row rounded-xl w-full h-[650px] p-[66px_45px_82px_45px] max-w-full">
+                <div class="bg-white grid grid-cols-1 gap-y-[1rem] sm:gap-y-[2rem] h-[100%] lg:h-[650px] lg:flex lg:flex-row rounded-xl w-full p-[2rem] sm:p-[2.5rem] md:p-[2rem] lg:p-[66px_45px_82px_45px] max-w-full">
+                  <button @click="open2 = false" type="button" class="text-[#44A29E] absolute top-3 right-2.5 bg-transparent hover:bg-[#44A29E] hover:text-white rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                 </button>
                     <div class="flex justify-center items-center">
-                        <div class="rounded-xl h-[450px] lg:h-full w-full lg:w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
+                        <div class="rounded-xl md:h-[500px] w-[250px] h-[250px] lg:h-full sm:h-[400px] sm:w-[400px] md:w-[500px] lg:w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
                     </div>
-                    <div class="bg-white pl-[27px] flex flex-col justify-between">
+                    <div class="bg-white lg:pl-[27px] flex flex-col justify-between">
                       <div class="">
-                        <div class="text-black font-bold text-title-carusel mb-[1.6rem]">{{ slide.title }}</div>
-                        <ul class="text-black text-base-text mb-4 text-left">
+                        <div class="text-black font-bold text-[1.1rem] sm:text-title-carusel mb-[1.6rem]">{{ slide.title }}</div>
+                        <ul class="text-black text-[0.85rem] sm:text-base-text mb-4 text-left">
                             {{ slide.bodyTitle }}
-                            <ol class="ml-[10px]" v-for="item,i in slide.body">
+                            <ol class="sm:ml-[10px]" v-for="item,i in slide.body">
                                 {{ i+1 }}. {{ item }}
                             </ol>
                         </ul>

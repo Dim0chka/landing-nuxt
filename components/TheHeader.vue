@@ -41,7 +41,7 @@
           >
         <DialogPanel class="overflow-hidden fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"> 
           <div class="flex items-center justify-between">
-            <a href="/" class="-m-1.5 p-1.5">
+            <a href="/">
               <span class="sr-only">Your Company</span>
             <svg class="h-8 w-auto" width="210" height="82" viewBox="0 0 210 82" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M58.1343 52.7888C50.8183 52.8162 46.0906 52.2536 40.1903 52.3401L49.9552 36.4264L78.8239 81.0049L89.6936 81.009L49.5947 19.2471L22.9641 61.4634L63.7655 61.4728L58.1343 52.7888ZM79.5388 60.9006C80.7153 60.6093 81.8485 60.3512 82.9607 59.8704C89.1246 57.2053 93.7363 54.4334 96.5316 51.081C114.953 28.9899 100.485 0.703902 73.3739 0.180514C65.3591 -0.16669 46.2425 0.0718773 38.325 0.195787L0 61.4593L10.0455 61.4672L43.2045 9.68476C48.9366 9.65851 73.0398 8.60141 78.4081 10.5201C87.361 13.7202 93.2981 22.399 92.7603 32.1502C91.2401 46.3856 79.3938 50.5068 74.0285 52.4216L79.5388 60.9006Z" fill="#FEFEFE"/>
@@ -59,7 +59,7 @@
               <div class="space-y-2 py-6">
                 <NuxtLink v-for="item in navigation" @click="mobileMenuOpen = false" :key="item.name" :to="item.href" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-[#66FCF1]">{{ item.name }}</NuxtLink>
               </div>
-              <div class="p-1.5 flex items-center justify-between">
+              <div class="flex items-center justify-between">
                 <UI-TheBtn @click="openModal">
                   Консультация
                 </UI-TheBtn>
