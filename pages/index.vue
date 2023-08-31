@@ -85,7 +85,7 @@
                         </div>
                       </div>
                       <div class="flex items-center justify-center">
-                        <button @click.once="openModalForm({id: slide.id, name: slide.title})" type="submit" class="rounded-full bg-[#45A29E] border-2 border-[#45A29E] px-16 py-2 text-btn text-white hover:bg-[#66FCF1] focus:text-[#45A29E] disabled:border-[#45A29E] disabled:bg-[#45A29E] disabled:text-white ">
+                        <button @click.once="openModalForm({id: slide.id, name: slide.title})" type="submit" class="rounded-full bg-[#45A29E] border-2 border-[#45A29E] px-16 py-2 text-btn text-white hover:bg-inherit hover:text-[#45A29E] focus:text-[#45A29E] focus:bg-inherit">
                           Консультация
                         </button>
                       </div>    
