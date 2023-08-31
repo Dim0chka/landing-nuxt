@@ -31,6 +31,7 @@
                                 <small class="text-[#B63030] text-[10px]" v-else-if="form.phone.touched && form.phone.errors.minLength">Минимальное кол-во 8. Сейчас {{ form.phone.value.length }}</small>
                             </div>
                         </div>
+                        {{ form.select.value }}
                         <div class="mb-14">
                             <label for="countries" class="block text-title-form text-white">Услуги</label>
                             <UI-TheSelect :class="{'ring-[#B63030] focus:ring-[#B63030]': form.select.touched && !form.select.valid}" @blur="form.select.blur" v-model:modelValue="form.select.value"/>
@@ -63,7 +64,7 @@
   </template>
   
 <script setup>
-import { ref } from 'vue'
+import { ref, onUpdated } from 'vue'
 import { useForm } from '@/features/form'
 import { useModalStore } from '~/store/modal'
 import { useSelectStore } from '~/store/select'
@@ -88,6 +89,10 @@ const form = useForm({
         value: '',
         validator: {required, minLength: minLength(8)}
     }
+})
+
+onUpdated(() => {
+    form.select.value = useSelectStore().select
 })
 
 const loader = ref(false)

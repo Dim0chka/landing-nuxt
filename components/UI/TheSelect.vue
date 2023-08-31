@@ -5,7 +5,7 @@
     <div class="relative">
       <ListboxButton :disabled="departments.unavailable" class="relative w-full bg-white ring-[1px] ring-[#6A7275] text-[#2E3639] text-title-form rounded-lg focus:outline-none focus:ring-[2px] focus:ring-[#66FCF1] block p-[1rem_1rem_1rem_1.5rem] cursor-default text-left ring-inset">
         <span class="flex items-center">
-          <span class="block truncate max-w-[59vw] sm:max-w-[100%]">{{ modelValue.name ? modelValue.name : "Выбор услуг" }}</span>
+          <span class="block truncate max-w-[59vw] sm:max-w-[100%]">{{ modelValue === '' ? "Выбор услуг" : modelValue.name}}</span>
         </span>
         <span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
           <svg class="h-5 w-5 text-gray-400" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -23,7 +23,7 @@
       <transition enter-active-class="transition duration-100 ease-out" enter-from-class="transform scale-95 opacity-0" enter-to-class="transform scale-100 opacity-100" leave-active-class="transition duration-75 ease-out" leave-from-class="transform scale-100 opacity-100" leave-to-class="transform scale-95 opacity-0">
         <ListboxOptions class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
           <ListboxOption as="template" v-for="person in departments" :key="person.id" :value="person" v-slot="{ active, selected }">
-            <li :class="[active ? 'bg-[#66FCF1] text-white' : 'text-black', 'relative cursor-default select-none py-2 pl-3 pr-9']">
+            <li  :class="[active ? 'bg-[#66FCF1] text-white' : 'text-black', 'relative cursor-default select-none py-2 pl-3 pr-9']">
               <div class="flex items-center">
                 <span :class="[selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate']">{{ person.name }}</span>
               </div>
@@ -37,10 +37,17 @@
 
 <script setup>
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/vue'
+import { useSelectStore } from '~/store/select'
+
+const store = useSelectStore()
+
+console.log(store.select)
 
 const props = defineProps({ modelValue: Object })
 const emit = defineEmits(['update:modelValue'])
 
+
+// Хук жизн цикла created
 const departments = [
     { id: 1, name: 'Внесение изменений в правила землепользования и застройки'},
     { id: 2, name: 'Постановка на кадастровый учет объекта и регистрация права в Росреестре' },

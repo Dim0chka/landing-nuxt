@@ -1,6 +1,6 @@
 <template>
   <div class="isolate pt-[100px]">
-      <video controlsList="nodownload noplaybackrate norewind nofullscreen nostop" autoplay muted class="w-full h-auto max-w-full" loop controls>
+      <video controlsList="nodownload noplaybackrate norewind nofullscreen nostop" playsinline autoplay muted class="w-full h-auto max-w-full" loop controls>
         <source src="~/assets/video/IMG_3597.mp4" type="video/mp4">
       </video>
   </div>
@@ -46,7 +46,7 @@
                   </UI-TheBtn>
                 </div>
               </div>
-            <img src="~/assets/img/photoService.jpg" class="h-192 object-cover w-full mx-auto" alt="">
+            <img src="~/assets/img/photoService.webp" class="h-192 object-cover w-full mx-auto" alt="">
           </div>
         </div>
       </div> 
@@ -58,7 +58,7 @@
       <!-- modal Carusel -->
       <TheModal v-model:open="open2">
         <DialogPanel class="relative transform rounded-lg text-left shadow-xl transition-all sm:my-8 max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[73.75rem]">
-          <Carousel v-model="currentSlide" :itemsToShow="1" :wrapAround="true" :transition="500">
+          <Carousel class="outline-none" v-model="currentSlide" :itemsToShow="1" :wrapAround="true" :transition="500">
             <Slide v-for="slide in carusel" :key="slide.id">
                 <div class="bg-white grid grid-cols-1 gap-y-[1rem] sm:gap-y-[2rem] h-[100%] lg:h-[650px] lg:flex lg:flex-row rounded-xl w-full p-[2rem] sm:p-[2.5rem] md:p-[2rem] lg:p-[66px_45px_82px_45px] max-w-full">
                   <button @click="open2 = false" type="button" class="text-[#44A29E] absolute top-3 right-2.5 bg-transparent hover:bg-[#44A29E] hover:text-white rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
