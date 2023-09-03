@@ -63,7 +63,7 @@
   </template>
   
 <script setup>
-import { ref, onUpdated } from 'vue'
+import { ref, onUpdated, onMounted } from 'vue'
 import { useForm } from '@/features/form'
 import { useModalStore } from '~/store/modal'
 import { useSelectStore } from '~/store/select'
@@ -90,6 +90,10 @@ const form = useForm({
     }
 })
 
+onMounted(() => {
+    useSelectStore().newValue('')
+})
+
 onUpdated(() => {
     form.select.value = useSelectStore().select
 })
@@ -97,15 +101,34 @@ onUpdated(() => {
 const loader = ref(false)
 
 async function submit() {
-    loader.value = true 
-    setTimeout(() => {
+    const formData = new FormData();
+    formData.append('name', form.name.value );
+    formData.append('phone', form.phone.value );
+    formData.append('select', form.select.value.name );
+
+
+    loader.value = true
+    try {
+        const response = await fetch('mail.php', {
+            method: 'POST',
+            body: formData,
+        })
+        if (response.ok) {
+            alert("Форма успешно отправлена!")
+        } else {
+            alert("Ошибка при отправке формы!")
+        }
+    } catch (error) {
+        alert('Ошибка при отправке запроса: ' + error)
+    } finally {
         form.name.value = ''
         form.name.touched = false 
         form.phone.value = ''
         form.phone.touched = false 
+        form.select.value = ''
         useSelectStore().newValue('')
         loader.value = false
-    }, 4000)
+    }
 }
 
 function close() {
@@ -114,6 +137,7 @@ function close() {
     form.name.touched = false 
     form.phone.value = ''
     form.phone.touched = false 
+    form.select.value = ''
     useSelectStore().newValue('')
 }
 </script>
