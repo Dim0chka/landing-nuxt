@@ -1,7 +1,7 @@
 <template>
   <div class="isolate pt-[100px]">
       <video controlsList="nodownload noplaybackrate norewind nofullscreen nostop" playsinline autoplay muted class="w-full h-auto max-w-full" loop controls>
-        <source src="~/assets/video/IMG_3597.mp4" type="video/mp4">
+        <source class="h-[100%]" src="~/assets/video/IMG_3597.mp4" type="video/mp4">
       </video>
   </div>
 
@@ -46,7 +46,7 @@
                   </UI-TheBtn>
                 </div>
               </div>
-            <img src="~/assets/img/photoService.webp" class="h-192 object-cover w-full mx-auto" alt="">
+            <img src="~/assets/img/photoService.webp" loading=“lazy” decoding=“async” class="h-192 object-cover w-full mx-auto" alt="">
           </div>
         </div>
       </div> 
@@ -352,19 +352,6 @@ function showImg(id) {
 </script>
 
 <style lang="scss">
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
 
 video::-webkit-media-controls-enclosure {
   display:none !important;
@@ -373,9 +360,6 @@ video::-webkit-media-controls-enclosure {
 video::-webkit-media-controls-stop-button {
   display: none;
 }
-
-
-
 
 .carousel__prev,
 .carousel__next {
