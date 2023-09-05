@@ -56,12 +56,12 @@
 
 
       <!-- modal Carusel -->
-      <TheModal v-model:open="open2">
+      <TheModal v-model:open="open">
         <DialogPanel class="relative transform rounded-lg text-left shadow-xl transition-all sm:my-8 max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[73.75rem]">
           <Carousel class="outline-none" v-model="currentSlide" :itemsToShow="1" :wrapAround="true" :transition="500">
             <Slide v-for="slide in carusel" :key="slide.id">
                 <div class="bg-white grid grid-cols-1 gap-y-[1rem] sm:gap-y-[2rem] h-[100%] lg:h-[650px] lg:flex lg:flex-row rounded-xl w-full p-[2rem] sm:p-[2.5rem] md:p-[2rem] lg:p-[66px_45px_82px_45px] max-w-full">
-                  <button @click="open2 = false" type="button" class="text-[#44A29E] absolute top-3 right-2.5 bg-transparent hover:bg-[#44A29E] hover:text-white rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
+                  <button @click="open = false" type="button" class="text-[#44A29E] absolute top-3 right-2.5 bg-transparent hover:bg-[#44A29E] hover:text-white rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
@@ -133,10 +133,52 @@
     </div>
 
     <div class="grid w-full grid-cols-[repeat(auto-fill,_100%)] lg:grid-cols-[repeat(auto-fill,_33%)] md:grid-cols-[repeat(auto-fill,_50%)]">
-      <div v-for="photo in img" :key="photo.id" :class="photo.img" class="h-[480px] bg-no-repeat bg-cover flex justify-start items-end p-[1.969rem_2.906rem] uppercase text-base-text">
+      <div v-for="photo in img" :key="photo.id" :class="photo.img"  @click="showImg(photo.id)" class="cursor-pointer grayscale hover:grayscale-0 h-[480px] bg-no-repeat bg-cover flex justify-start items-end p-[1.969rem_2.906rem] uppercase text-[0px] hover:text-base-text">
         <h1>{{ photo.name }}</h1>
       </div>
     </div>
+
+
+    <TheModal v-model:open="openSecond">
+      <DialogPanel class="relative transform rounded-lg text-left shadow-xl transition-all sm:my-8 max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[73.75rem]">
+        <Carousel class="outline-none" v-model="imgId" :itemsToShow="1" :wrapAround="true" :transition="500">
+          <Slide v-for="slide in img" :key="slide.id">
+              <div class="bg-white grid grid-cols-1 gap-y-[1rem] sm:gap-y-[2rem] h-[100%] lg:flex lg:flex-row rounded-xl w-full p-[2rem] sm:p-[2.5rem] md:p-[2rem] lg:p-[66px_45px_82px_45px] max-w-full">
+                <button @click="openSecond = false" type="button" class="text-[#44A29E] absolute top-3 right-2.5 bg-transparent hover:bg-[#44A29E] hover:text-white rounded-lg text-btn w-8 h-8 ml-auto inline-flex justify-center items-center" data-modal-hide="authentication-modal">
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+               </button>
+                  <div class="flex justify-center items-center">
+                      <div class="rounded-xl md:h-[500px] w-[250px] h-[250px] lg:h-[450px] sm:h-[400px] sm:w-[400px] md:w-[500px] lg:w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
+                  </div>
+                  <div class="bg-white lg:pl-[27px] flex flex-col">
+                      <div class="text-black font-bold text-[1.1rem] uppercase sm:text-title-carusel mb-[1.6rem]">{{ slide.name }}</div>
+                      <div class="grid grid-cols-1 text-left text-black">
+                        <span>
+                          Объект: 
+                        </span>
+                        <span>
+                          Вид работ:
+                        </span>
+                        <span>
+                          Адрес:
+                        </span>
+                        <span>
+                          Статус: Проект реализован.
+                        </span>
+                      </div>
+                  </div>
+              </div>
+          </Slide>
+          <template #addons>
+              <Navigation/>
+          </template>
+      </Carousel>
+      </DialogPanel>
+    </TheModal>
+
+
 
     <div class="bg-layout-pattern-2 w-full bg-no-repeat bg-cover py-16 sm:py-16">
       <div class="mx-auto max-w-[1296px] px-6 lg:px-8">
@@ -192,14 +234,21 @@ import { useSelectStore } from '~/store/select'
 const store = useModalStore()
 
 const currentSlide = ref(0)
+
+// открытие модального окна 
 const open = ref(false)
-const open2 = ref(false)
+const openSecond = ref(false)
+
+
+const imgId = ref(null)
+
 const stats = [
   {id: 1, name: 'реализованных проектов', value: '>50'},
   {id: 2, name: 'кв. м. оформленных объектов', value: '75 000'},
   {id: 3, name: 'удачно завершенных дел', value: '99%'},
   {id: 4, name: 'довольных клиентов', value: '>25'}
 ]
+
 const img = [
   {id: 1, img: 'bg-photo1', name: 'ГАРАЖНЫЙ КОМПЛЕКС ул.Борисовские Пруды' },
   {id: 2, img: 'bg-photo2', name: 'университет нефти и газа имени И.М. Губкина' },
@@ -224,7 +273,8 @@ const carusel = [
     {id: 10, title: 'Кадастровые работы', bodyTitle: 'Роль кадастровых работ в жизни собственников:', body: ['Обеспечивают прозрачность и законность сделки с недвижимостью;', 'Позволяют владельцам недвижимости правильно оформить ее в наследство;', 'Позволяют установить правомерные границы участка земли и прилегающих объектов недвижимости, определить их стоимость и налоговую стоимость, повышают прозрачность и законность сделок.'], img: 'bg-field10-pattern'}
 ]
 
-// const removeModal = (boolean) => open.value = boolean
+
+// валидация формы
 const required = val => !!val
 const minLength = num => val => val.length >= num
 
@@ -243,17 +293,6 @@ const form = useForm({
     }
 })
 
-const breakpoints = {
-    1024: {
-        itemsToShow: 3,
-    },
-    300: {
-        itemsToShow: 1,
-        snapAlign: 'center',
-    }
-}
-
-
 const loader = ref(false)
 
 function submit() {
@@ -268,20 +307,51 @@ function submit() {
 }
 
 
-function slideTo(val) {
-  currentSlide.value = val
-  open2.value = true
+// адаптив для карусели
+const breakpoints = {
+    1024: {
+        itemsToShow: 3,
+    },
+    300: {
+        itemsToShow: 1,
+        snapAlign: 'center',
+    }
 }
 
+function slideTo(val) {
+  currentSlide.value = val
+  open.value = true
+}
+
+// открытие модального окна с каруселью 
 function openModalForm(obj) {
   useSelectStore().newValue(obj)
-  open2.value = false
+  open.value = false
   store.open()
+}
+
+function showImg(id) {
+  openSecond.value  = true
+  imgId.value = id - 1
 }
 
 </script>
 
 <style lang="scss">
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
 video::-webkit-media-controls-enclosure {
   display:none !important;
 }
