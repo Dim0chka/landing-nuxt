@@ -51,8 +51,6 @@
         </div>
       </div> 
 
-      <!-- modal form -->
-      <!-- <TheModalForm v-model:open="open" :selectValue="select"/> -->
 
 
       <!-- modal Carusel -->
@@ -186,7 +184,7 @@
             <p class="text-base-text uppercase">
               К сожалению мы не можем выложить все наши работы, для нас немаловажную роль играет конфиденциальность клиентов, но мы знаем как решить любой вопрос с недвижимостью
             </p>
-              <form @submit.prevent="submit" action="" class="grid items-start gap-x-[1.547rem] md:grid-cols-3 gap-y-[2rem] text-left">
+              <form @submit.prevent action="" class="grid items-start gap-x-[1.547rem] md:grid-cols-3 gap-y-[2rem] text-left">
                 <div>
                     <UI-TheInput :class="{'ring-[#B63030] focus:ring-[#B63030]': form.name.touched && !form.name.valid}" @blur="form.name.blur" v-model="form.name.value" type="text" id="name" placeholder="Имя"/>
                     <small class="text-[#B63030] text-[10px]" v-if="form.name.touched && form.name.errors.required">Обязательно для заполнения</small>
@@ -295,15 +293,31 @@ const form = useForm({
 
 const loader = ref(false)
 
-function submit() {
-    loader.value = true 
-    setTimeout(() => {
+async function submit() {
+    const formData = new FormData();
+    formData.append('name', form.name.value );
+    formData.append('phone', form.phone.value );
+
+    loader.value = true
+    try {
+        const response = await fetch('mail.php', {
+            method: 'POST',
+            body: formData,
+        })
+        if (response.ok) {
+            alert("Форма успешно отправлена!")
+        } else {
+            alert("Ошибка при отправке формы!")
+        }
+    } catch (error) {
+        alert('Ошибка при отправке запроса: ' + error)
+    } finally {
         form.name.value = ''
         form.name.touched = false 
         form.phone.value = ''
         form.phone.touched = false 
         loader.value = false
-    }, 4000)
+    }
 }
 
 

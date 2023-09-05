@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit" action="" class="grid items-start gap-6 md:grid-cols-2 text-left">
+    <form @submit.prevent action="" class="grid items-start gap-6 md:grid-cols-2 text-left">
         <div>
             <!-- class="h-[3.75rem]" -->
             <UI-TheInput :class="{'ring-[#B63030] focus:ring-[#B63030]': form.name.touched && !form.name.valid}" @blur="form.name.blur" v-model="form.name.value" type="text" id="name" placeholder="Имя"/>
@@ -49,16 +49,34 @@ const form = useForm({
 
 const loader = ref(false)
 
-function submit() {
-    loader.value = true 
-    setTimeout(() => {
+async function submit() {
+    const formData = new FormData();
+    formData.append('name', form.name.value );
+    formData.append('phone', form.phone.value );
+    formData.append('select', form.select.value.name );
+
+
+    loader.value = true
+    try {
+        const response = await fetch('mail.php', {
+            method: 'POST',
+            body: formData,
+        })
+        if (response.ok) {
+            alert("Форма успешно отправлена!")
+        } else {
+            alert("Ошибка при отправке формы!")
+        }
+    } catch (error) {
+        alert('Ошибка при отправке запроса: ' + error)
+    } finally {
         form.name.value = ''
         form.name.touched = false 
         form.phone.value = ''
         form.phone.touched = false 
         form.select.value = ''
         loader.value = false
-    }, 4000)
+    }
 }
 
 </script>
