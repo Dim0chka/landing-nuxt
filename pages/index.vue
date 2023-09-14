@@ -13,29 +13,24 @@
           </div>
         </div>
     </div>
-    <div id="moscow" class="bg-moscow-pattern w-full bg-no-repeat bg-cover  py-24 sm:py-32">
+    <div class="bg-moscow-pattern w-full bg-no-repeat bg-cover  py-24 sm:py-32">
         <div class="mx-auto max-w-6xl px-6 lg:px-8">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-16 text-center justify-center lg:grid-cols-4">
             <dl v-for="stat in stats" :key="stat.id" class="items-center flex lg:max-w-xs flex-col gap-y-4">
                 <hr class="h-0.5 w-[235px] lg:w-full bg-[#66FCF1] border-0 dark:bg-[#66FCF1]">
                 <dt class="text-btn text-white">{{ stat.name }}</dt>
-                <dd class="order-first text-5xl lg:text-[2.8rem] xl:text-5xl text-white sm:text-6xl">{{ stat.value }}</dd>
+                <dd class="order-first text-5xl lg:text-[2.5rem] text-white sm:text-6xl">{{ stat.value }}</dd>
             </dl>
           </div>
         </div>
     </div>
-    <div class="overflow-hidden pt-24 sm:pt-32">
+    <div id="company" class="overflow-hidden pt-24 sm:pt-32">
         <div class="mx-auto max-w-[1363px] md:px-6 lg:px-8">
           <div class="grid grid-cols-1 gap-x-[7rem] gap-y-16 lg:grid-cols-[2.315fr_1fr]">
               <div class="px-6 md:p-0">
                 <h1 class="text-title text-white">ЦЕНИМ СЕРВИС, КОТОРЫЙ ПРЕВОСХОДИТ ОЖИДАНИЯ</h1>
                 <p class="mt-[1.188rem] text-base-text text-white">
-                    Приветствую! Меня зовут Анна, я основатель компании Development 
-                    Architecture. Более 10 лет развиваю бизнес в направлении получения 
-                    исходно-разрешительной документации. Активно сотрудничаем с 
-                    крупными Заказчиками, создавая полноценные партнёрские отношения. 
-                    Мы ценим своё и Ваше время, поэтому научились находить самые короткие 
-                    и менее затратные пути решения поставленных задач. 
+                  Приветствую! Меня зовут Анна, я основатель компании Development Architecture. Я получила инженерное образование в Государственном Университете по Землеустройству. Карьерный путь в сфере девелопмента начала в 2012 году с позиции инженера, а в 2015 стала руководителем департамента по проектированию и исходно-разрешительной документации в одной из строительной компании. В 2021 году приняла решение основать собственный бизнес. В чем помог полученный ранее опыт в области исходно-разрешительной документации. Активно сотрудничаю с крупными Заказчиками, создаю полноценные партнёрские отношения. Я старюсь ценить своё и Ваше время, поэтому научилась находить самые короткие и менее затратные пути решения поставленных задач.
                     <br>
                     <br>
                     <span class="mt-2" >Будем рады стать Вашим деловым партнёром!</span>
@@ -46,7 +41,7 @@
                   </UI-TheBtn>
                 </div>
               </div>
-            <img src="~/assets/img/photoService.webp" loading=“lazy” decoding=“async” class="h-192 object-cover w-full mx-auto" alt="">
+              <img src="~/assets/img/photoService.webp" loading=“lazy” decoding=“async” class="h-192 object-cover w-full mx-auto" alt="">
           </div>
         </div>
       </div> 
@@ -97,7 +92,7 @@
         </DialogPanel>
       </TheModal>
 
-     <div class="overflow-hidden mb-20 py-16 sm:py-16">
+     <div id="servise" class="overflow-hidden mb-20 py-16 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <Carousel v-model="currentSlide" :itemsToShow="3" :breakpoints="breakpoints" :wrapAround="true" :transition="500">
                 <Slide v-for="slide in carusel" :key="slide.id">
@@ -130,7 +125,7 @@
         </div>
     </div>
 
-    <div class="grid w-full grid-cols-[repeat(auto-fill,_100%)] lg:grid-cols-[repeat(auto-fill,_33%)] md:grid-cols-[repeat(auto-fill,_50%)]">
+    <div id="project" class="grid w-full grid-cols-[repeat(auto-fill,_100%)] lg:grid-cols-[repeat(auto-fill,_33%)] md:grid-cols-[repeat(auto-fill,_50%)]">
       <div v-for="photo in img" :key="photo.id" :class="photo.img"  @click="showImg(photo.id)" class="cursor-pointer grayscale hover:grayscale-0 h-[480px] bg-no-repeat bg-cover flex justify-start items-end p-[1.969rem_2.906rem] uppercase text-[0px] hover:text-base-text">
         <h1>{{ photo.name }}</h1>
       </div>
@@ -152,15 +147,15 @@
                   </div>
                   <div class="bg-white lg:pl-[27px] flex flex-col">
                       <div class="text-black font-bold text-[1.1rem] uppercase sm:text-title-carusel mb-[1.6rem]">{{ slide.name }}</div>
-                      <div class="grid grid-cols-1 text-left text-black">
+                      <div class="grid grid-cols-1 gap-y-[10px] text-left text-black">
                         <span>
-                          Объект: 
+                          Объект: {{ slide.body.obj }}
                         </span>
                         <span>
-                          Вид работ:
+                          Вид работ: {{ slide.body.work }}
                         </span>
                         <span>
-                          Адрес:
+                          Адрес: {{ slide.body.adress }}
                         </span>
                         <span>
                           Статус: Проект реализован.
@@ -210,7 +205,7 @@
       </div>
   </div>
 
-  <div class="overflow-hidden mb-20 py-16 sm:py-16">
+  <div id="trust" class="overflow-hidden mb-20 py-16 sm:py-16">
     <div class="mx-auto max-w-[1363px] lg:px-8">
       <div class="grid gap-y-[5.875rem] grid-cols-1 ">
         <h1 class="uppercase text-center text-title">Нам доверяют</h1>
@@ -241,22 +236,22 @@ const openSecond = ref(false)
 const imgId = ref(null)
 
 const stats = [
-  {id: 1, name: 'реализованных проектов', value: '>50'},
-  {id: 2, name: 'кв. м. оформленных объектов', value: '75 000'},
+  {id: 1, name: 'реализованных проектов', value: '>100'},
+  {id: 2, name: 'кв. м. оформленных объектов', value: '150 000 '},
   {id: 3, name: 'удачно завершенных дел', value: '99%'},
-  {id: 4, name: 'довольных клиентов', value: '>25'}
+  {id: 4, name: 'довольных клиентов', value: '>100'}
 ]
 
 const img = [
-  {id: 1, img: 'bg-photo1', name: 'ГАРАЖНЫЙ КОМПЛЕКС ул.Борисовские Пруды' },
-  {id: 2, img: 'bg-photo2', name: 'университет нефти и газа имени И.М. Губкина' },
-  {id: 3, img: 'bg-photo3', name: 'МАГАЗИН СЕВЕРНОЕ БУТОВО БУЛЬВАР ДМИТРИЯ ДОНСКОГО' },
-  {id: 4, img: 'bg-photo4', name: 'КУЛЬТУРНО-ДОСУГОВЫЙ КОМПЛЕКС МИТИНО УЛ.ДУБРАВНАЯ' },
-  {id: 5, img: 'bg-photo5', name: 'СПОРТИВНЫЙ КОМПЛЕКС ЖУЛЕБИНО МКР.6'},
-  {id: 6, img: 'bg-photo6', name: 'СПОРТИВНЫЙ КОМПЛЕКС ПОСЕЛОК КИЕВСКИЙ' },
-  {id: 7, img: 'bg-photo7', name: 'ТОРГОВЫЙ КОМПЛЕКС Г.ПОДОЛЬСК' },
-  {id: 8, img: 'bg-photo8', name: 'ОБЩЕСТВЕННЫЙ КОМПЛЕКС УЛ.МАРШАЛА СОВИЦКОГО' },
-  {id: 9, img: 'bg-photo9', name: 'ОБЩЕСТВЕННЫЙ КОМПЛЕКС УЛ.СИНЕЛЬНИКОВСКАЯ' }
+  {id: 1, img: 'bg-photo1', name: 'ГАРАЖНЫЙ КОМПЛЕКС ул.Борисовские Пруды', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство', adress: 'г. Москва, внутригоробское муниципальное образование Москворечье-Сабурово ул. Борисовские прубы, вл. 5А'} },
+  {id: 2, img: 'bg-photo2', name: 'Общежитие Университета нефти и газа имени И.М. Губкина', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство', adress: 'г. Москва, ул. Бутлерова, вл. 1, 3, 5, 5Б (ЮЗАО, Коньково)'} },
+  {id: 3, img: 'bg-photo3', name: 'МАГАЗИН СЕВЕРНОЕ БУТОВО БУЛЬВАР ДМИТРИЯ ДОНСКОГО', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство', adress: 'г. Москва, пересечение ул. Бульвар Дмитрия Донского и ул. Академика Глушко (ЮЗАО, Северное Бутово)'} },
+  {id: 4, img: 'bg-photo4', name: 'КУЛЬТУРНО-ДОСУГОВЫЙ КОМПЛЕКС МИТИНО УЛ.ДУБРАВНАЯ', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство и разрешение на ввод объекта', adress: 'г. Москва, ул. Дубравная д.33'} },
+  {id: 5, img: 'bg-photo5', name: 'СПОРТИВНЫЙ КОМПЛЕКС ЖУЛЕБИНО МКР.6', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство', adress: 'г. Москва, Жулебино, мкр. 6, корп. 18 (ЮВАО, Выхино-Жулебино)'}},
+  {id: 6, img: 'bg-photo6', name: 'СПОРТИВНЫЙ КОМПЛЕКС ПОСЕЛОК КИЕВСКИЙ', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство', adress: 'г. Москва, поселение Киевский, пос. Киевский, рядом с домом № 25'} },
+  {id: 7, img: 'bg-photo7', name: 'ТОРГОВЫЙ КОМПЛЕКС Г.ПОДОЛЬСК', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство', adress: 'Московская область, г. Подольск, в границах улиц: 43 Армии, Кирова, Юбилейная, Ленинградская, Ленинградский проезд'} },
+  {id: 8, img: 'bg-photo8', name: 'ОБЩЕСТВЕННЫЙ КОМПЛЕКС УЛ.МАРШАЛА Савицкого', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство', adress: 'г. Москва, Южное Бутово, Щербинка, мкр. 1, корп. 26 (ул. Маршала Савицкого, вл. 6, корп. 1)'} },
+  {id: 9, img: 'bg-photo9', name: 'ОБЩЕСТВЕННЫЙ КОМПЛЕКС УЛ.СИНЕЛЬНИКОВСКАЯ', body: {obj: 'Нежилое здание', work: 'Разрешение на строительство', adress: 'г. Москва, ул. Синельниковская, вл. 49/2 (ЮЗАО, Южное Бутово)'} }
 ]
 const carusel = [
     {id: 1, title: 'Внесение изменений в правила землепользования и застройки', bodyTitle: 'НАИБОЛЕЕ ЧАСТЫЕ ПРИЧИНЫ ВНЕСЕНИЯ ИЗМЕНЕНИЙ В ПЗЗ:', body: ['Вид разрешённого использования ЗУ не соответствует целям бизнеса — Смена вида разрешённого использования;', 'Невозможна реконструкция объектов с преобразованием ТЭПов — Изменение технико-экономических показателей;', 'ПЗЗ ограничивает возможности нового строительства — Снятие запрета на строительство;', 'Градостроительные регламенты препятствуют строительству — Получение разрешения на строительство.'], img: 'bg-field2-pattern'},

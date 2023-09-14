@@ -20,8 +20,8 @@
          </div>
 
          <div class="flex lg:flex-1 items-center xl:justify-end mr-[10px]">
-            <a class="text-btn text-white" href="">
-                <span class="link link-underline pb-1.5 link-underline-black">+7 919 108 11 17</span>
+            <a rel="nofollow noopener noreferrer" class="text-btn text-white" href="">
+                <span class="link link-underline pb-1.5 link-underline-black">8 495 497 02 47</span>
             </a>
          </div>
 
@@ -44,12 +44,12 @@
 
 const store = useModalStore()
 
- const navigation = [
-   {name: 'О компании', href: '/'},
-   {name: 'Услуги', href: '/'},
-   {name: 'Проекты', href: '/'},
-   {name: 'Нам доверяют', href: '/'}
- ]
+const navigation = [
+  {name: 'О компании', href: '/#company'},
+  {name: 'Услуги', href: '/#servise'},
+  {name: 'Проекты', href: '/#project'},
+  {name: 'Нам доверяют', href: '/#trust'}
+]
  </script>
  
  <style>

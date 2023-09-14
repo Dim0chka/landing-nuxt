@@ -1,5 +1,5 @@
 <template>
-   <header class="bg-black fixed inset-x-0 top-0 z-50 border-b-2 border-[#66FCF1] overflow-hidden">
+   <header :class="{'out': isHeaderOut}" class="bg-black transition-all duration-300 ease-linear fixed inset-x-0 top-0 z-50 border-b-2 border-[#66FCF1] overflow-hidden">
       <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
           <a href="#" class="-m-1.5 p-1.5">
@@ -75,18 +75,36 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import {ref, onMounted, onBeforeUnmount} from 'vue'
 import { Dialog, DialogPanel, TransitionRoot, TransitionChild} from '@headlessui/vue'
 import { useModalStore } from '~/store/modal' 
 
 const store = useModalStore()
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+})
+
+const scrollPrev = ref(0)
+const isHeaderOut = ref(false)
+
+
+function handleScroll() {
+  const scrolled = window.pageYOffset;
+  if (scrolled > 100 && scrolled > scrollPrev.value) {
+    isHeaderOut.value = true;
+  } else {
+    isHeaderOut.value = false;
+  }
+  scrollPrev.value = scrolled;
+}
  
 const mobileMenuOpen = ref(false)
 const navigation = [
-  {name: 'О компании', href: '/#moscow'},
-  {name: 'Услуги', href: '/#moscow'},
-  {name: 'Проекты', href: '/#moscow'},
-  {name: 'Нам доверяют', href: '/#moscow'}
+  {name: 'О компании', href: '/#company'},
+  {name: 'Услуги', href: '/#servise'},
+  {name: 'Проекты', href: '/#project'},
+  {name: 'Нам доверяют', href: '/#trust'}
 ]
 
 function openModal() {
@@ -96,6 +114,11 @@ function openModal() {
 </script>
 
 <style>
+  
+  .out {
+    transform: translateY(-100%);
+  }
+
 	.link-underline {
 		border-bottom-width: 0;
 		background-image: linear-gradient(transparent, transparent), linear-gradient(#66FCF1, #66FCF1);
