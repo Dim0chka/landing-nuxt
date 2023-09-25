@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'moscow-pattern': " url('~/assets/img/MoscowCity.webp')",
+        'moscow-pattern2': " url('~/assets/img/MoscowCity2.webp')",
         'field1-pattern': " url('~/assets/img/field1.webp')",
         'field2-pattern': " url('~/assets/img/field2.webp')",
         'field3-pattern': " url('~/assets/img/field3.webp')",

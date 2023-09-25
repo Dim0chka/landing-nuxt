@@ -1,5 +1,6 @@
 <template>
-   <header :class="{'out': isHeaderOut}" class="bg-black transition-all duration-300 ease-linear fixed inset-x-0 top-0 z-50 border-b-2 border-[#66FCF1] overflow-hidden">
+  <transition-group name="head">
+    <header v-if="!isHeaderOut" class="bg-black transition-all duration-500 ease-linear fixed inset-x-0 top-0 z-50 overflow-hidden">
       <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex lg:flex-1">
           <a href="#" class="-m-1.5 p-1.5">
@@ -72,14 +73,16 @@
       </Dialog>
     </TransitionRoot>
     </header>
+  </transition-group>
 </template>
 
 <script setup>
-import {ref, onMounted, onBeforeUnmount} from 'vue'
+import {ref, onMounted, onBeforeMount} from 'vue'
 import { Dialog, DialogPanel, TransitionRoot, TransitionChild} from '@headlessui/vue'
 import { useModalStore } from '~/store/modal' 
 
 const store = useModalStore()
+
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
@@ -115,9 +118,38 @@ function openModal() {
 
 <style>
   
-  .out {
-    transform: translateY(-100%);
+.head-enter-active {
+  animation: animateHead .5s;
+}
+
+.head-leave-active {
+  animation: animateHeadL .5s;
+}
+
+@keyframes animateHead {
+  from {
+      transform: translateY(-100px);
+      opacity: 0;
   }
+
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+@keyframes animateHeadL {
+  from {
+      transform: translateY(0);
+      opacity: 1;
+  }
+
+  to {
+      transform: translateY(-100px);
+      opacity: 0;
+  }
+}
+
 
 	.link-underline {
 		border-bottom-width: 0;
@@ -136,9 +168,4 @@ function openModal() {
 		background-size: 100% 3px;
 		background-position: 0 100%
 	}
-
-
-  .nuxt-link-active {
-    background-color: red;
-  }
 </style>

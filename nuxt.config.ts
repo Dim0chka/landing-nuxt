@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt'
   ],
   buildModules: [
+    'intersection-observer',
     '@nuxtjs/pwa',
   ],
   ssr: true,
