@@ -2,7 +2,7 @@
     <div id="trust" class="overflow-hidden mb-20 py-16 sm:py-16">
         <div class="mx-auto max-w-[1363px] lg:px-8">
             <div class="grid gap-y-[5.875rem] grid-cols-1 ">
-                <h1 class="uppercase text-center text-title">Нам доверяют</h1>
+                <h1 class="trust uppercase text-center text-title">Нам доверяют</h1>
                 <Carousel :itemsToShow="4" :wrapAround="true" :transition="500" :breakpoints="breakpoints">
                     <Slide class="flex items-center justify-between">
                         <img width="226" height="226" src="~/assets/img/logo1.png" alt="">
@@ -23,6 +23,32 @@
 </template>
 
 <script setup>
+import {ref, onMounted} from 'vue'
+
+
+onMounted(() => {
+  let delay = 0.2;
+  const animatedElements = new Set(); 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animatedElements.has(entry.target)) {
+          entry.target.style.animationDelay = `${delay}s`;
+          entry.target.classList.add('animate-delay-trust');
+          delay += 0.2;
+          animatedElements.add(entry.target); // Добавляем элемент в множество после анимации
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+  document.querySelectorAll('.trust').forEach((item) => {
+    observer.observe(item);
+  });
+});
 
 const breakpoints = {
     1024: {
@@ -43,6 +69,28 @@ const breakpoints = {
 </script>
 
 <style scoped>
+.animate-delay-trust {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: animate-delay-trust;
+}
+
+@keyframes animate-delay-trust {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.trust {
+  opacity: 0;
+}
+
 .carousel__slide {
     padding: 5px;
   }

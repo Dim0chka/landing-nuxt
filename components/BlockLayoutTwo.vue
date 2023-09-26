@@ -2,7 +2,7 @@
     <div class="bg-layout-pattern-2 w-full bg-no-repeat bg-cover py-16 sm:py-16">
         <div class="mx-auto max-w-[1296px] px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-6 items-center text-left md:text-center">
-              <p class="text-base-text uppercase">
+              <p class="layout2 text-[15px] md:text-base-text uppercase">
                 К сожалению мы не можем выложить все наши работы, для нас немаловажную роль играет конфиденциальность клиентов, но мы знаем как решить любой вопрос с недвижимостью
               </p>
                 <form @submit.prevent action="" class="grid items-start gap-x-[1.547rem] md:grid-cols-3 gap-y-[2rem] text-left">
@@ -34,6 +34,30 @@
 
 <script setup>
 import { useForm } from '@/features/form'
+
+onMounted(() => {
+  let delay = 0.2;
+  const animatedElements = new Set(); 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animatedElements.has(entry.target)) {
+          entry.target.style.animationDelay = `${delay}s`;
+          entry.target.classList.add('animate-delay-layout2');
+          delay += 0.2;
+          animatedElements.add(entry.target); // Добавляем элемент в множество после анимации
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+  document.querySelectorAll('.layout2').forEach((item) => {
+    observer.observe(item);
+  });
+});
 
 const required = val => !!val
 const minLength = num => val => val.length >= num
@@ -82,3 +106,27 @@ async function submit() {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.animate-delay-layout2 {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: animate-delay-layout2;
+  }
+  
+  @keyframes animate-delay-layout2 {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .layout2 {
+    opacity: 0;
+  }
+</style>

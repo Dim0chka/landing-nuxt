@@ -1,17 +1,15 @@
 <template>
   <div class="isolate">
-      <video ref="myVideo" @loadedmetadata="updateVideoHeight" preload="metadata" controlsList="nodownload noplaybackrate norewind nofullscreen nostop" playsinline autoplay muted class="w-full h-auto max-w-full" loop controls>
+      <video @loadedmetadata="updateVideoHeight" preload="metadata" controlsList="nodownload noplaybackrate norewind nofullscreen nostop" playsinline autoplay muted class="w-full h-auto max-w-full" loop controls>
         <source class="h-[100%]" src="~/assets/video/IMG_3597.mp4" type="video/mp4">
       </video>
   </div>
 
-  {{ videoHeight }}
-
     <div class="isolate px-6 pt-14 lg:px-8">
         <div class="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
           <div class="text-center">
-            <h1 class="main-title font-bold uppercase tracking-tight text-white text-title">DEVELOPMENT ARCHITECTURE</h1>
-            <p class="main-title mt-6 uppercase text-base-text text-white">Скажи <span class="text-[#66FCF1]">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-[#66FCF1]">сложные вопросы</span> в сфере <span class="text-[#66FCF1]">градостроительства</span> и земельных правоотношений.</p>
+            <h1 class="main-title font-bold uppercase tracking-tight text-white text-[20px] sm:text-title">DEVELOPMENT ARCHITECTURE</h1>
+            <p class="main-title mt-6 uppercase text-[16px] sm:text-base-text text-white">Скажи <span class="text-[#66FCF1]">DA</span>. Мы знаем, что делать! <br> Решаем <span class="text-[#66FCF1]">сложные вопросы</span> в сфере <span class="text-[#66FCF1]">градостроительства</span> и земельных правоотношений.</p>
           </div>
         </div>
     </div>
@@ -32,14 +30,6 @@
 
 <script setup>
 import {ref, onMounted, onUpdated} from 'vue'
-
-const myVideo = ref(null);
-const videoHeight = ref(0); 
-
-const updateVideoHeight = () => {
-  const videoElement = myVideo.value;
-  videoHeight.value = videoElement.videoHeight;
-};
 
 
 onMounted(() => {

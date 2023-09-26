@@ -3,15 +3,15 @@
         <div class="mx-auto max-w-[1363px] px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-4 items-center gap-y-16 text-center lg:grid-cols-2">
                 <div class="grid gap-y-6 md:grid-cols-1 text-left lg:max-w-xl">
-                    <h1 class="text-center text-base-text text-white">DEVELOPMENT ARCHITECTURE</h1>
-                    <p class="text-white text-base-text">
+                    <h1 class="layout1 text-center text-base-text text-white">DEVELOPMENT ARCHITECTURE</h1>
+                    <p class="layout1 text-white text-base-text">
                         Мы знаем, как в кратчайшие сроки подготовить
                         необходимую техническую документацию, с учётом всех 
                         необходимых требований.
                     </p>
                 </div>
                 <div class="grid grid-cols-1 gap-y-4 w-full">
-                    <h1 class="text-left text-white text-btn">я хочу обратиться по такому вопросу</h1>
+                    <h1 class="layout1-right text-left text-white text-btn">я хочу обратиться по такому вопросу</h1>
                     <form @submit.prevent action="" class="grid items-start gap-6 md:grid-cols-2 text-left">
                         <div>
                             <!-- class="h-[3.75rem]" -->
@@ -45,6 +45,52 @@
 <script setup>
 import {ref} from 'vue'
 import {useForm} from '@/features/form'
+
+
+onMounted(() => {
+  let delay = 0.2;
+  const animatedElements = new Set(); 
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animatedElements.has(entry.target)) {
+          entry.target.style.animationDelay = `${delay}s`;
+          entry.target.classList.add('animate-delay-layout1');
+          delay += 0.2;
+          animatedElements.add(entry.target); 
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+   const observer1 = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !animatedElements.has(entry.target)) {
+          entry.target.style.animationDelay = `${delay}s`;
+          entry.target.classList.add('animate-delay-layout1-right');
+          delay += 0.2;
+          animatedElements.add(entry.target); 
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
+
+  document.querySelectorAll('.layout1').forEach((item) => {
+    observer.observe(item);
+  });
+
+  document.querySelectorAll('.layout1-right').forEach((item) => {
+    observer1.observe(item);
+  });
+});
 
 const required = val => !!val
 const minLength = num => val => val.length >= num
@@ -96,3 +142,52 @@ async function submit() {
     }
 }
 </script>
+
+
+<style lang="scss" scoped>
+
+.animate-delay-layout1 {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: animate-delay-layout1;
+  }
+  
+  .animate-delay-layout1-right {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: animate-delay-layout1-right;
+  }
+
+  @keyframes animate-delay-layout1-right {
+    0% {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes animate-delay-layout1 {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .layout1 {
+    opacity: 0;
+  }
+  
+  .layout1-right {
+    opacity: 0;
+  }
+
+</style>

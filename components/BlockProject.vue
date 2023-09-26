@@ -6,10 +6,6 @@
             <h1 v-show="photo.active" class="absolute p-[1.969rem_2.906rem] text-base-text uppercase">{{ photo.name }}</h1>
           </transition>
         </div>
-
-        <!-- <div v-for="photo in img" :key="photo.id" :class="photo.img"  @click="showImg(photo.id)" class="cursor-pointer grayscale hover:grayscale-0 h-[480px] bg-no-repeat bg-cover flex justify-start items-end p-[1.969rem_2.906rem] uppercase text-[0px] hover:text-base-text">
-          <h1>{{ photo.name }}</h1>
-        </div> -->
     </div>
   
       <TheModal v-model:open="openSecond">

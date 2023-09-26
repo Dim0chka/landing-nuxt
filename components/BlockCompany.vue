@@ -3,8 +3,8 @@
         <div class="mx-auto max-w-[1363px] md:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-x-[7rem] gap-y-16 lg:grid-cols-[2.315fr_1fr]">
                 <div class="px-6 md:p-0">
-                <h1 class="main-title text-title text-white">ЦЕНИМ СЕРВИС, КОТОРЫЙ ПРЕВОСХОДИТ ОЖИДАНИЯ</h1>
-                <p class="main-title mt-[1.188rem] text-base-text text-white">
+                <h1 class="main-title text-[20px] sm:text-title text-white">ЦЕНИМ СЕРВИС, КОТОРЫЙ ПРЕВОСХОДИТ ОЖИДАНИЯ</h1>
+                <p class="main-title mt-[1.188rem] text-[16px] sm:text-base-text text-white">
                     Приветствую! Меня зовут Анна, я основатель компании Development Architecture. Я получила инженерное образование в Государственном Университете по Землеустройству. Карьерный путь в сфере девелопмента начала в 2012 году с позиции инженера, а в 2015 стала руководителем департамента по проектированию и исходно-разрешительной документации в одной из строительной компании. В 2021 году приняла решение основать собственный бизнес. В чем помог полученный ранее опыт в области исходно-разрешительной документации. Активно сотрудничаю с крупными Заказчиками, создаю полноценные партнёрские отношения. Я старюсь ценить своё и Ваше время, поэтому научилась находить самые короткие и менее затратные пути решения поставленных задач.
                     <br>
                     <br>
@@ -16,7 +16,7 @@
                     </UI-TheBtn>
                 </div>
                 </div>
-                <img src="~/assets/img/photoService.webp" loading=“lazy” decoding=“async” class="main-img h-192 object-cover w-full mx-auto" alt="">
+                <img src="~/assets/img/photoService.webp" loading=“lazy” decoding=“async” class="main-img h-[562px] object-cover w-full mx-auto" alt="">
             </div>
         </div>
     </div> 
