@@ -9,7 +9,7 @@
     </div>
   
       <TheModal v-model:open="openSecond">
-        <DialogPanel class="relative transform rounded-lg text-left shadow-xl transition-all sm:my-8 max-w-[400px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[73.75rem]">
+        <DialogPanel class="relative transform rounded-lg text-left shadow-xl transition-all sm:my-8 max-w-[90%] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[73.75rem]">
           <Carousel class="outline-none" v-model="imgId" :itemsToShow="1" :wrapAround="true" :transition="500">
             <Slide v-for="slide in img" :key="slide.id">
                 <div class="bg-white grid grid-cols-1 gap-y-[1rem] sm:gap-y-[2rem] h-[100%] lg:flex lg:flex-row rounded-xl w-full p-[2rem] sm:p-[2.5rem] md:p-[2rem] lg:p-[66px_45px_82px_45px] max-w-full">
@@ -19,11 +19,11 @@
                     </svg>
                  </button>
                     <div class="flex justify-center items-center">
-                        <div class="rounded-xl md:h-[500px] w-[250px] h-[250px] lg:h-[450px] sm:h-[400px] sm:w-[400px] md:w-[500px] lg:w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
+                        <div class="rounded-xl md:h-[500px] w-[150px] h-[150px] lg:h-[450px] sm:h-[400px] sm:w-[400px] md:w-[500px] lg:w-[450px] flex-none bg-cover text-center overflow-hidden" :class="slide.img" title="Woman holding a mug"></div>
                     </div>
-                    <div class="bg-white lg:pl-[27px] flex flex-col">
+                    <div class="bg-white lg:pl-[27px] hyphens-auto leading-5 flex flex-col">
                         <div class="text-black font-bold text-[1.1rem] uppercase sm:text-title-carusel mb-[1.6rem]">{{ slide.name }}</div>
-                        <div class="grid grid-cols-1 gap-y-[10px] text-left text-black">
+                        <div class="hyphens-auto leading-5 grid grid-cols-1 gap-y-[10px] text-left text-black text-[0.85rem] sm:text-base-text">
                           <span>
                             Объект: {{ slide.body.obj }}
                           </span>
@@ -52,7 +52,6 @@
 import {ref} from 'vue'
 import { DialogPanel } from '@headlessui/vue'
 
-const hov = ref(false)
 
 const openSecond = ref(false)
 const imgId = ref(null)

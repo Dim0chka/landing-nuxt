@@ -25,10 +25,22 @@
                                 <small class="text-[#B63030] text-[10px]" v-if="form.name.touched && form.name.errors.required">Обязательно для заполнения</small>
                             </div>
                             <div>
-                                <label for="tel" class="block text-title-form" :class="{'text-[#B63030]': form.phone.touched && !form.phone.valid}">Телефон</label>
-                                <UI-TheInput :class="{'ring-[#B63030] focus:ring-[#B63030]': form.phone.touched && !form.phone.valid}"  @blur="form.phone.blur" v-model="form.phone.value" type="text" id="tel" placeholder="Телефон"/>
-                                <small class="text-[#B63030] text-[10px]" v-if="form.phone.touched && form.phone.errors.required">Обязательно для заполнения</small>
-                                <small class="text-[#B63030] text-[10px]" v-else-if="form.phone.touched && form.phone.errors.minLength">Минимальное кол-во 8. Сейчас {{ form.phone.value.length }}</small>
+                                <div>
+                                    <label for="tel" class="block text-title-form" :class="{'text-[#B63030]': form.phone.touched && !form.phone.valid}">Телефон</label>
+                                    <UI-TheInput 
+                                        :class="{'ring-[#B63030] focus:ring-[#B63030]': form.phone.touched && !form.phone.valid}"  
+                                        @blur="form.phone.blur" 
+                                        v-model="formattedPhone"
+                                        type="text" 
+                                        id="tel" 
+                                        placeholder="+7 (123) 123 12-31"
+                                        @input="handlePhoneInput"
+                                        maxlength="18"
+                                    />
+                                    <small class="text-[#B63030] text-[10px] mb-1" v-if="form.phone.touched && (form.phone.errors.required || form.phone.errors.minLength)">Обязательно для заполнения</small>
+                                    <small class="text-[#B63030] text-[10px]" v-if="form.phone.touched && form.phone.errors.validPhone">Используйте: +7 (XXX) XXX-XX-XX</small>
+                                </div>
+                                
                             </div>
                         </div>
                         <div class="mb-14">
@@ -51,15 +63,61 @@
                             Нажимая на кнопку «Отправить»<br>вы даёте добровольное согласие на обработку своих персональных данных
                         </p>
                     </form>
-                </div>    
+                </div>  
             </div>
+
+            <TransitionRoot  as="template" :show="successAlertVisible">
+            <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+            <div v-if="successAlertVisible"  class="relative z-[999]">
+                <div class="bg-green-100 border-t-4 border-green-500 rounded-b text-green-900 px-4 py-3 shadow-md" role="alert">
+                    <div class="flex">
+                        <div class="py-1">
+                            <svg class="fill-current h-6 w-6 text-green-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm2 11H8v-2h4v2zm0-4H8V7h4v2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-bold">Форма успешно отправлена!</p>
+                            <p class="text-sm">Спасибо за ваш запрос. Мы свяжемся с вами в ближайшее время.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </TransitionChild>
+    </TransitionRoot>
+
+
+    <TransitionRoot  as="template" :show="errorAlertVisible">
+            <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
+            <div v-if="errorAlertVisible" class="relative z-[999]">
+                <div class="bg-red-100 border-t-4 border-red-500 rounded-b text-red-900 px-4 py-3 shadow-md" role="alert">
+                    <div class="flex">
+                        <div class="py-1">
+                            <svg class="fill-current h-6 w-6 text-red-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm1 11H9v-2h2v2zm0-4H9V7h2v2z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-bold">Произошла ошибка!</p>
+                            <p class="text-sm">Пожалуйста, проверьте введенные данные и попробуйте снова.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </TransitionChild>
+    </TransitionRoot>
+
             </DialogPanel>
+            
           </div>
         </div>
+
+        
 
         </TransitionChild>
       </Dialog>
     </TransitionRoot>
+
   </template>
   
 <script setup>
@@ -70,10 +128,15 @@ import { useSelectStore } from '~/store/select'
 import { Dialog, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
 const store = useModalStore()
-
+const successAlertVisible = ref(false)
+const errorAlertVisible = ref(false)
 
 const required = val => !!val
 const minLength = num => val => val.length >= num
+
+const phonePattern = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/;
+
+const validPhone = val => phonePattern.test(val)
 
 const form = useForm({
     select: {
@@ -86,9 +149,40 @@ const form = useForm({
     },
     phone: {
         value: '',
-        validator: {required, minLength: minLength(8)}
+        validator: {required, minLength: minLength(18), validPhone}
     }
 })
+
+const formattedPhone = ref('');
+
+const handlePhoneInput = (event) => {
+    let input = event.target.value;
+
+    // Убираем все нецифровые символы
+    input = input.replace(/\D/g, '');
+
+    if (input.length > 11) {
+        input = input.substring(0, 11);
+    }
+
+    // Форматирование телефонного номера
+    if (input.length === 0) {
+        formattedPhone.value = '';
+    } else if (input.length === 1) {
+        formattedPhone.value = `+7 (`;
+    } else if (input.length <= 4) {
+        formattedPhone.value = `+7 (${input.substring(1)}`;
+    } else if (input.length <= 7) {
+        formattedPhone.value = `+7 (${input.substring(1, 4)}) ${input.substring(4)}`;
+    } else if (input.length <= 9) {
+        formattedPhone.value = `+7 (${input.substring(1, 4)}) ${input.substring(4, 7)}-${input.substring(7)}`;
+    } else {
+        formattedPhone.value = `+7 (${input.substring(1, 4)}) ${input.substring(4, 7)}-${input.substring(7, 9)}-${input.substring(9, 11)}`;
+    }
+
+    // Обновляем значение формы
+    form.phone.value = formattedPhone.value;
+}
 
 onMounted(() => {
     useSelectStore().newValue('')
@@ -96,6 +190,8 @@ onMounted(() => {
 
 onUpdated(() => {
     form.select.value = useSelectStore().select
+    // Обновляем форматированный номер телефона при редактировании
+    formattedPhone.value = form.phone.value;
 })
 
 const loader = ref(false)
@@ -114,12 +210,21 @@ async function submit() {
             body: formData,
         })
         if (response.ok) {
-            alert("Форма успешно отправлена!")
+            successAlertVisible.value = true;  // Показать алерт
+            setTimeout(() => {
+                successAlertVisible.value = false;  // Скрыть алерт через 3 секунды
+            }, 3000);
         } else {
-            alert("Ошибка при отправке формы!")
+            errorAlertVisible.value = true
+            setTimeout(() => {
+                errorAlertVisible.value = false;  // Скрыть алерт через 3 секунды
+            }, 3000);
         }
     } catch (error) {
-        alert('Ошибка при отправке запроса: ' + error)
+        errorAlertVisible.value = true
+            setTimeout(() => {
+                errorAlertVisible.value = false;  // Скрыть алерт через 3 секунды
+            }, 3000);
     } finally {
         form.name.value = ''
         form.name.touched = false 

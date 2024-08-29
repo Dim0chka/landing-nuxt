@@ -5,7 +5,7 @@
                 <div class="px-6 md:p-0">
                 <h1 class="main-title text-[20px] sm:text-title text-white">ЦЕНИМ СЕРВИС, КОТОРЫЙ ПРЕВОСХОДИТ ОЖИДАНИЯ</h1>
                 <p class="main-title mt-[1.188rem] text-[16px] sm:text-base-text text-white">
-                    Приветствую! Меня зовут Анна, я основатель компании Development Architecture. Я получила инженерное образование в Государственном Университете по Землеустройству. Карьерный путь в сфере девелопмента начала в 2012 году с позиции инженера, а в 2015 стала руководителем департамента по проектированию и исходно-разрешительной документации в одной из строительной компании. В 2021 году приняла решение основать собственный бизнес. В чем помог полученный ранее опыт в области исходно-разрешительной документации. Активно сотрудничаю с крупными Заказчиками, создаю полноценные партнёрские отношения. Я старюсь ценить своё и Ваше время, поэтому научилась находить самые короткие и менее затратные пути решения поставленных задач.
+                    Приветствую! Меня зовут Анна, я основатель компании Development Architecture. Я получила инженерное образование в Государственном Университете по Землеустройству. Карьерный путь в сфере девелопмента начала в 2012 году с позиции инженера, а в 2015 стала руководителем департамента по проектированию и исходно-разрешительной документации в одной из строительной компании. В 2021 году приняла решение основать собственный бизнес. В чем помог полученный ранее опыт в области исходно-разрешительной документации. Активно сотрудничаю с крупными Заказчиками, создаю полноценные партнёрские отношения. Я стараюсь ценить своё и Ваше время, поэтому научилась находить самые короткие и менее затратные пути решения поставленных задач.
                     <br>
                     <br>
                     <span class="mt-2" >Будем рады стать Вашим деловым партнёром!</span>
@@ -16,7 +16,7 @@
                     </UI-TheBtn>
                 </div>
                 </div>
-                <img src="~/assets/img/photoService.webp" loading=“lazy” decoding=“async” class="main-img h-[562px] object-cover w-full mx-auto" alt="">
+                <img src="~/assets/img/photoService.webp" loading="lazy" decoding="async" class="h-[562px] object-cover w-full mx-auto" alt="">
             </div>
         </div>
     </div> 
@@ -44,30 +44,12 @@ onMounted(() => {
       });
     },
     {
-      threshold: 0.3,
-    }
-  );
-  const observer2 = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !animatedElements.has(entry.target)) {
-          entry.target.style.animationDelay = `${0.2}s`;
-          entry.target.classList.add('animate-delay-img');
-          animatedElements.add(entry.target); // Добавляем элемент в множество после анимации
-        }
-      });
-    },
-    {
-      threshold: 0.3,
+      threshold: 0.1,
     }
   );
 
   document.querySelectorAll('.main-title').forEach((item) => {
     observer.observe(item);
-  });
-
-  document.querySelectorAll('.main-img').forEach((item) => {
-    observer2.observe(item);
   });
 });
 </script>

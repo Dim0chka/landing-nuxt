@@ -119,12 +119,10 @@ function openModal() {
 
 function openModalPhone() {
   mobileMenuOpen.value = true
-  document.body.style.overflow = 'hidden'
 }
 
 function closeModalPhone() {
   mobileMenuOpen.value = false
-  document.body.style.overflow = ''
 }
 </script>
 

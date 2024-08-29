@@ -2,19 +2,19 @@
     <div id="trust" class="overflow-hidden mb-20 py-16 sm:py-16">
         <div class="mx-auto max-w-[1363px] lg:px-8">
             <div class="grid gap-y-[5.875rem] grid-cols-1 ">
-                <h1 class="trust uppercase text-center text-title">Нам доверяют</h1>
+                <h1 class="trust uppercase text-center text-[20px] sm:text-title">Нам доверяют</h1>
                 <Carousel :itemsToShow="4" :wrapAround="true" :transition="500" :breakpoints="breakpoints">
                     <Slide class="flex items-center justify-between">
-                        <img width="226" height="226" src="~/assets/img/logo1.png" alt="">
+                        <img loading="lazy" decoding="async" width="226" height="226" src="~/assets/img/logo1.png" alt="">
                     </Slide>
                     <Slide class="flex items-center justify-between">
-                        <img width="200" height="226" src="~/assets/img/logo2.png" alt="">
+                        <img loading="lazy" decoding="async" width="200" height="226" src="~/assets/img/logo2.png" alt="">
                     </Slide>
                     <Slide class="flex items-center justify-between">
-                        <img width="226" height="226" src="~/assets/img/logo3.png" alt="">
+                        <img loading="lazy" decoding="async" width="226" height="226" src="~/assets/img/logo3.png" alt="">
                     </Slide>
                     <Slide class="flex items-center justify-between">
-                        <img width="400" height="226" src="~/assets/img/logo4.png" alt="">
+                        <img loading="lazy" decoding="async" width="400" height="226" src="~/assets/img/logo4.png" alt="">
                     </Slide>
                 </Carousel>
             </div>

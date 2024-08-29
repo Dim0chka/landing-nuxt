@@ -1,6 +1,6 @@
 <template>
     <footer class="inset-x-0 top-0 z-50">
-       <nav class="flex flex-col items-center text-center md:text-left gap-y-[20px] xl:flex-row justify-between p-6 lg:px-8" aria-label="Global">
+       <nav class="flex flex-col items-center text-center md:text-left gap-[40px] gap-y-[30px] xl:flex-row justify-between p-6 lg:px-8" aria-label="Global">
          <div class="flex flex-1 items-center">
            <a href="#" class="-m-1.5 p-1.5">
              <span class="sr-only">Your Company</span>
@@ -13,14 +13,14 @@
            </a>
          </div>
  
-         <div class="flex flex-col md:flex-row xl:gap-x-12 md:gap-x-[100px]">
+         <div class="flex flex-col md:flex-row gap-[12px] xl:gap-x-12 md:gap-x-[100px]">
              <a v-for="item in navigation" :key="item.name" :href="item.href" class="text-btn text-white">
                  <span class="link link-underline pb-1.5 link-underline-black">{{ item.name }}</span>
              </a>
          </div>
 
          <div class="flex lg:flex-1 items-center xl:justify-end mr-[10px]">
-            <a rel="nofollow noopener noreferrer" class="text-btn text-white" href="">
+            <a rel="nofollow noopener noreferrer" class="text-btn text-white" href="tel:84954970247">
                 <span class="link link-underline pb-1.5 link-underline-black">8 495 497 02 47</span>
             </a>
          </div>

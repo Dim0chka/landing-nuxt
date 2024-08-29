@@ -1,8 +1,13 @@
 <template>
   <div class="isolate">
-      <video @loadedmetadata="updateVideoHeight" preload="metadata" controlsList="nodownload noplaybackrate norewind nofullscreen nostop" playsinline autoplay muted class="w-full h-auto max-w-full" loop controls>
-        <source class="h-[100%]" src="~/assets/video/IMG_3597.mp4" type="video/mp4">
+      <video id="video1" preload="metadata" controlsList="nodownload noplaybackrate norewind nofullscreen nostop" playsinline autoplay muted class="hidden lg:block w-full h-auto max-w-full" loop controls>
+        <source class="h-[100%]" src="~/assets/video/VideoUpdate2.mp4" type="video/mp4">
       </video>
+
+      <video id="video2" preload="metadata" controlsList="nodownload noplaybackrate norewind nofullscreen nostop" playsinline autoplay muted class="lg:hidden w-full h-auto max-w-full" loop controls>
+        <source class="h-[100%]" src="~/assets/video/VideoUpdate2-mob.mp4" type="video/mp4">
+      </video>
+
   </div>
 
     <div class="isolate px-6 pt-14 lg:px-8">
@@ -48,7 +53,7 @@ onMounted(() => {
       });
     },
     {
-      threshold: 0.5,
+      threshold: 0.1,
     }
   );
 
